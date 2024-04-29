@@ -3,7 +3,10 @@ import pandas as pd
 import folium
 # import folium.plugins import MarkerCluster
 import numpy as np
+<<<<<<< HEAD
 import re
+=======
+>>>>>>> 62d6227 (Resolve merge conflict by incorporating both suggestions)
 
 st.set_page_config(
     page_title='Korea Travel Guide 🌎',
