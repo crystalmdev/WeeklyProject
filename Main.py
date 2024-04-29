@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import folium
 # import folium.plugins import MarkerCluster
-import numpy as np
-import time # 이종혁
 
 
 st.set_page_config(
