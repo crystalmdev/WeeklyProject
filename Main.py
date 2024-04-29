@@ -3,7 +3,7 @@ import pandas as pd
 import folium
 # import folium.plugins import MarkerCluster
 import numpy as np
-
+# test
 
 st.set_page_config(
     page_title='Korea Travel Guide 🌎',
