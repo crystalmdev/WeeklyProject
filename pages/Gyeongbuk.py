@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import folium
+import numpy as np
 
 from streamlit_folium import st_folium
 from streamlit_folium import st_folium, folium_static
