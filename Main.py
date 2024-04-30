@@ -32,7 +32,7 @@ locs = {'Seoul' : [37.540705, 126.956764],
     'jeju' : [33.364805, 126.542671]}
 
 st.title('Korea Travel Guide 🌎')
-st.header('Korea Map 🗺️')
+# st.header('Korea Map 🗺️')
 selected_city = st.selectbox('Select the city you plan to travel',
                options = list(locs.keys()),
                 index = 0)

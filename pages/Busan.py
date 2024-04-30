@@ -24,6 +24,7 @@ with tab1:
         st.page_link('https://www.kobus.co.kr/main.do',
                      label='bus', icon='🚌')
 
+    # st.markdown('**Introduction**')
     with st.container(height=190):
         st.markdown('''Located to the west of Haeundae Beach, Gwangalli Beach 
         is 1.4 kilometers long and 25~110 meters wide, and is famous for its 
@@ -36,12 +37,12 @@ with tab1:
     col1, col2 = st.columns([1,1])
 
     with col1:
-        st.markdown('**Introduction**')
+        st.markdown('**Image**')
         st.image(Image.open('./img/수정/광안리해수욕장.jpeg'),
                  use_column_width=True)
 
     with col2:
-        st.markdown('**Similar Destinations**')
+        st.markdown('**You may also like 😃**')
         row1 = st.columns(2)
         row2 = st.columns(2)
 
@@ -63,12 +64,12 @@ with tab1:
     col1, col2 = st.columns([1,1])
 
     with col1:
-        st.markdown('**WordCloud**')
+        st.markdown('**Top Keywords about the Destination**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/예시/wordcloud.png'),
+        st.image(Image.open('./img/인화/대릉원 워드클라우드.png'),
                  use_column_width=True)
     with col2:
-        st.markdown('**Top 20 Keywords**')
+        st.markdown('**스타차트로 변경**')
         st.text('(based on Korean blog reviews)')
         st.image(Image.open('./img/예시/graph.png'),
                  use_column_width=True)
