@@ -1,6 +1,7 @@
 import streamlit as st
-import numpy as np
 from PIL import Image
+import numpy as np # TEST
+
 
 st.header('Busan')
 
