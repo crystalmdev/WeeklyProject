@@ -1,5 +1,9 @@
 import streamlit as st
 from PIL import Image
+import folium
+
+from streamlit_folium import st_folium
+from streamlit_folium import st_folium, folium_static
 
 st.header('Gyeongbuk')
 
@@ -22,14 +26,14 @@ with tab1:
 
     with col1:
         st.markdown('**Introduction**')
-        st.image(Image.open('./img/woljeong_bridge.jpg'),
+        st.image(Image.open('./img/인화/woljeong_bridge.jpg'),
                  use_column_width=True)
     with col2:
         st.markdown('**Similar Destinations**')
         row1 = st.columns(2)
         row2 = st.columns(2)
         rec_place = ['Donggung Palace and Wolji Pond', 'Cheonmachong', 'Bomun Tourist Complex', 'Bomunjeong']
-        rec_place_img = ['./img/dongpalace.jpg', './img/cheonma.jpg', './img/bomun.jpg', './img/bomunjeong.jpg']
+        rec_place_img = ['./img/인화/dongpalace.jpg', './img/인화/cheonma.jpg', './img/인화/bomun.jpg', './img/인화/bomunjeong.jpg']
         rec_caption = ['Announcement time: 09:00 - 22:00 (ticket date 21:30), short break\
                         Fee: Adults 3,000 won / 2,000 won / Children 1,000 won', \
                        'Operating hours 09:00-22:00 \
@@ -51,13 +55,14 @@ with tab1:
     with col1:
         st.markdown('**WordCloud**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/월정교 워드클라우드.png'),
+        st.image(Image.open('./img/인화/월정교 워드클라우드.png'),
                  use_column_width=True)
     with col2:
         st.markdown('**Top 20 Keywords**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/월정교 상위20개 단어빈도.png'),
+        st.image(Image.open('./img/인화/월정교 상위20개 단어빈도.png'),
                  use_column_width=True)
+
 with tab2:
     st.subheader('Hwangridan Street')
     with st.container(height=200):
@@ -74,14 +79,14 @@ with tab2:
 
     with col1:
         st.markdown('**Introduction**')
-        st.image(Image.open('./img/hwanglidan.jpg'),
+        st.image(Image.open('./img/인화/hwanglidan.jpg'),
                  use_column_width=True)
     with col2:
         st.markdown('**Similar Destinations**')
         row1 = st.columns(2)
         row2 = st.columns(2)
         rec_place = ['Cheomseongdae', 'Bomunho Lake', 'Woljeonggyo Bridge', 'Daereungwon']
-        rec_place_img = ['./img/cheom.jpg', './img/bomunlake.jpg', './img/woljeong_bridge.jpg', './img/daer.jpg']
+        rec_place_img = ['./img/인화/cheom.jpg', './img/인화/bomunlake.jpg', './img/인화/woljeong_bridge.jpg', './img/인화/daer.jpg']
         rec_caption = ['It is an astronomical observatory from the Silla period that observed the movement of celestial bodies.', \
                        'Bomun Lake, a huge artificial lake measuring 500,000 pyeong',\
                        'Opening hours: 09:00-22:00\
@@ -101,12 +106,12 @@ with tab2:
     with col1:
         st.markdown('**WordCloud**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/황리단길 워드클라우드.png'),
+        st.image(Image.open('./img/인화/황리단길 워드클라우드.png'),
                  use_column_width=True)
     with col2:
         st.markdown('**Top 20 Keywords**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/황리단길 상위20개 단어빈도.png'),
+        st.image(Image.open('./img/인화/황리단길 상위20개 단어빈도.png'),
                  use_column_width=True)
 
 with tab3:
@@ -125,14 +130,14 @@ with tab3:
 
     with col1:
         st.markdown('**Introduction**')
-        st.image(Image.open('./img/daer.jpg'),
+        st.image(Image.open('./img/인화/daer.jpg'),
                  use_column_width=True)
     with col2:
         st.markdown('**Similar Destinations**')
         row1 = st.columns(2)
         row2 = st.columns(2)
         rec_place = ['Cheonmachong', 'Cheomseongdae', 'Woljeonggyo Bridge', 'Bomunjeong']
-        rec_place_img = ['./img/cheonma.jpg', './img/cheom.jpg', './img/woljeong_bridge.jpg', './img/bomunjeong.jpg']
+        rec_place_img = ['./img/인화/cheonma.jpg', './img/인화/cheom.jpg', './img/인화/woljeong_bridge.jpg', './img/인화/bomunjeong.jpg']
         rec_caption = ['Operating hours 09:00-22:00\
                         Admission fee: Adults 3,000 / Soldiers, Youth 2,000 / Children 1,000', \
                        'It is an astronomical observatory from the Silla period that observed the movement of celestial bodies.',\
@@ -153,12 +158,12 @@ with tab3:
     with col1:
         st.markdown('**WordCloud**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/대릉원 워드클라우드.png'),
+        st.image(Image.open('./img/인화/대릉원 워드클라우드.png'),
                  use_column_width=True)
     with col2:
         st.markdown('**Top 20 Keywords**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/대릉원 상위20개 단어빈도.png'),
+        st.image(Image.open('./img/인화/대릉원 상위20개 단어빈도.png'),
                  use_column_width=True)
 
 with tab4:
@@ -176,14 +181,14 @@ with tab4:
 
     with col1:
         st.markdown('**Introduction**')
-        st.image(Image.open('./img/cheom.jpg'),
+        st.image(Image.open('./img/인화/cheom.jpg'),
                  use_column_width=True)
     with col2:
         st.markdown('**Similar Destinations**')
         row1 = st.columns(2)
         row2 = st.columns(2)
         rec_place = ['Woljeonggyo Bridge','Daereungwon','Donggung Palace and Wolji Pond','Cheonmachong']
-        rec_place_img = ['./img/woljeong_bridge.jpg', './img/daer.jpg', './img/dongpalace.jpg', './img/cheonma.jpg']
+        rec_place_img = ['./img/인화/woljeong_bridge.jpg', './img/인화/daer.jpg', './img/인화/dongpalace.jpg', './img/인화/cheonma.jpg']
         rec_caption = ['Opening hours: 09:00-22:00\
                        Admission fee: Free\
                         Parking information: Use Woljeonggyo public parking lot (153-5 Gyo-dong, free)', \
@@ -206,12 +211,12 @@ with tab4:
     with col1:
         st.markdown('**WordCloud**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/첨성대 워드클라우드.png'),
+        st.image(Image.open('./img/인화/첨성대 워드클라우드.png'),
                  use_column_width=True)
     with col2:
         st.markdown('**Top 20 Keywords**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/첨성대 상위20개 단어빈도.png'),
+        st.image(Image.open('./img/인화/첨성대 상위20개 단어빈도.png'),
                  use_column_width=True)
 
 with tab5:
@@ -229,14 +234,14 @@ with tab5:
 
     with col1:
         st.markdown('**Introduction**')
-        st.image(Image.open('./img/youngildae.jpg'),
+        st.image(Image.open('./img/인화/youngildae.jpg'),
                  use_column_width=True)
     with col2:
         st.markdown('**Similar Destinations**')
         row1 = st.columns(2)
         row2 = st.columns(2)
         rec_place = ['Space Walk','Pohang Maritime skywalk','Chilpo Beach','Pohang--Songdo Beach']
-        rec_place_img = ['./img/spacewalk.jpg', './img/pohangsky.jpg', './img/chilpo.jpg', './img/pohangsongdo.jpg']
+        rec_place_img = ['./img/인화/spacewalk.jpg', './img/인화/pohangsky.jpg', './img/인화/chilpo.jpg', './img/인화/pohangsongdo.jpg']
         rec_caption = ['The Space Walk, located in Pohang Hwanhwa Park, was built with a track length of 333m and a number of stairs of 717.', \
                        'The height is 7m and the total length is 463m.\
                        The largest scale in the country\
@@ -255,10 +260,10 @@ with tab5:
     with col1:
         st.markdown('**WordCloud**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/영일대해수욕장 워드클라우드.png'),
+        st.image(Image.open('./img/인화/영일대해수욕장 워드클라우드.png'),
                  use_column_width=True)
     with col2:
         st.markdown('**Top 20 Keywords**')
         st.text('(based on Korean blog reviews)')
-        st.image(Image.open('./img/영일대해수욕장 상위20개 단어빈도.png'),
+        st.image(Image.open('./img/인화/영일대해수욕장 상위20개 단어빈도.png'),
                  use_column_width=True)
