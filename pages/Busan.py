@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-import numpy as np # test
+import numpy as np # TEST
 
 
 st.header('Busan 예시: 참고용')
