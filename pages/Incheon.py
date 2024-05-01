@@ -1,14 +1,13 @@
 import streamlit as st
 from PIL import Image
 import numpy as np # TEST
-st.header('Busan')
-list = ['Gwangalli beach', 'Lotte World Busan', 'Haeundae Beach', 'Dadaepo Beach', 'Haeundae Street food alley']
+st.header('Incheon')
+list = ['월미도', 'Incheon Chinatown', 'Incheon Grand Park', 'Wolmi Theme Park', 'Songwol-dong Fairy Tale Village ']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
 def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
     with (tabnum):
         st.subheader(name)
-        # st.markdown('**Train: 3hrs 24 min / Bus: 5hrs 2 min** (departure from seoul)')
         col1, col2, col3, col4 = st.columns([1.5,1.3,1,1])
         with col1:
             st.markdown('**How To Get There:**')
@@ -58,16 +57,15 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
             st.image(Image.open(image3),
                      use_column_width=True)
 
-# --------------------------(광안리해수욕장)-------------------------
-
+# --------------------------(월미도)-------------------------
 #관광지명
 name = list[0]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EC%9B%94%EB%AF%B8%EB%8F%84/data=!3m2!1e3!4b1!4m6!3m5!1s0x357b82632534876d:0x834d1ce34f129aca!8m2!3d37.4754003!4d126.5978148!16s%2Fm%2F0j7n6nc?hl=ko&entry=ttu'
 #관광지 소개 글
 intro = '''Located to the west of Haeundae Beach, Gwangalli Beach is 1.4 kilometers long and 25~110 meters wide, and is famous for its fine sand. The area underwent a water purification process, which led the ecosystem to flourish in the nearby river waters. In addition to the beachfront, the Gwangalli area is filled with delicious restaurants and romantic cafes, as well as stores selling famous fashion brands. The area has plenty to offer, but many people come in the evening to take in the bright lights of Gwangandaegyo Bridge, stretching across the horizon.'''
 #추천 장소 4곳
-rec_place = ['송정해수욕장', '해운대해수욕장', '송도해수욕장', '해운대달맞이길']
+rec_place = ['월미테마파크', '영종도', '인천차이나타운', '마시안해변']
 #추천 장소 이미지 경로 4개
 rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
 #추천 장소 설명 4개
@@ -82,15 +80,15 @@ image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab1, name, googlelink, intro, image1, image2, image3)
 
-# --------------------------(롯데월드 어드밴처 부산)-------------------------
+# --------------------------(인천차이나타운)-------------------------
 #관광지명
 name = list[1]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C+%EC%96%B4%EB%93%9C%EB%B2%A4%EC%B2%98+%EB%B6%80%EC%82%B0/data=!3m2!1e3!4b1!4m6!3m5!1s0x35688df2c51276f1:0xebe28acdea1ee316!8m2!3d35.1968317!4d129.2132274!16s%2Fg%2F11qh3d226h?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EC%9D%B8%EC%B2%9C+%EC%B0%A8%EC%9D%B4%EB%82%98%ED%83%80%EC%9A%B4/data=!3m2!1e3!4b1!4m6!3m5!1s0x357b789af07d8fd7:0x97f43442e51633c9!8m2!3d37.475589!4d126.6178849!16s%2Fm%2F02rhs_v?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Lotte World Adventure opened in Busan, where visitors can experience fun and exciting performances and parades. Busan Lotte World is built in Busan and has convenient access using public transportation, leading to many visitors since the first day of its opening. Lotte World Adventure Busan consists of six themed zones. At the heart of the fairy village, Tinker Falls Zone, is the Talking Tree, which uses animatronic technology to tell the story of six themes in the park. Rory Castle in the Royal Garden Zone, located at the highest point in Lotte World, is designed to look like it is floating on water, and visitors can enjoy the view of Busan and the sea in front of Gijang at a glance. Other rides, especially the Giant Digger and Giant Splash, have already received word-of-mouth excitement. As such, there are not only attractions for adults, but also amusement rides for families with young children. It is placed indoors so that children can safely enjoy it regardless of the weather. The parade, the highlight of the amusement park, runs twice a day for about 30 minutes.'''
+intro = '''Incheon's Chinatown came into being with the opening of Incheon Port in 1883 and Incheon's designation as an extraterritoriality of the Ching dynasty in the following year. In the past, the area held many stores trading goods imported from China, but currently most Chinese businesses in the area are restaurants. Today, the residents of Chinatown are mostly 2nd or 3rd generation Chinese, descendents of the early Chinese settlers. The area harbors many of the flavors of China, while the traditional culture of the first generation is preserved.'''
 #추천 장소 4곳
-rec_place = ['송정해수욕장', '감천문화마을', '해운대해수욕장', '부산타워']
+rec_place = ['송월동 동화마을', '월미도', '월미테마파크', '영종도']
 #추천 장소 이미지 경로 4개
 rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
 #추천 장소 설명 4개
@@ -105,15 +103,15 @@ image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab2, name, googlelink, intro, image1, image2, image3)
 
-# --------------------------(해운대해수욕장)-------------------------
+# --------------------------(인천대공원)-------------------------
 #관광지명
 name = list[2]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x35688d5c0efe075f:0x9963b1d5c163ac98!8m2!3d35.1586975!4d129.1603842!16s%2Fm%2F03bx6xl?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EC%9D%B8%EC%B2%9C%EB%8C%80%EA%B3%B5%EC%9B%90/data=!3m1!1e3!4m10!1m2!2m1!1z7J247LKc64yA6rO17JuQ!3m6!1s0x357b7c98d4dd7b0f:0x88d0d7acb8001d6e!8m2!3d37.459244!4d126.7522197!15sCg_snbjsspzrjIDqs7Xsm5BaEiIQ7J247LKcIOuMgOqzteybkJIBBHBhcmvgAQA!16s%2Fm%2F0nbhyl_?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Haeundae Beach is the most famous beach in Busan. The white sand beach is roughly 1.5 kilometers long, over a 30- to 50-meter wide area, creating a beautiful coastline before a shallow bay, making it perfect for swimming. People flock to Haeundae Beach every summer. All kinds of accommodations from luxury hotels to private guesthouses have developed in the area around the beach, making this the perfect summer vacation spot. Haeundae Beach is also famous for various cultural events and festivals held throughout the year. Other facilities in the area include Dongbaekseom Island, Busan Aquarium, a yachting dock, BEXCO, driving courses and more.'''
+intro = '''Incheon Grand Park is an urban nature park located in Jangsu-dong, Namdong-gu, Incheon. The park is surrounded by Gwanmosan Mountain and Sangasan Mountain. Spanning across 727 acres of land, Incheon Grand Park is the only large-scale natural green park in Incheon. The park provides a pleasant atmosphere for citizens to escape from the city life and enjoy the natural surroundings. Over 4 million people visit the park every year to take in the clean air and relax in nature.'''
 #추천 장소 4곳
-rec_place = ['동백섬', '해운대달맞이길', '해운대블루라인파크', '송정해수욕장']
+rec_place = ['인천대공원 어린이동물원', '소래산', '소래습지생태공원', '강화도']
 #추천 장소 이미지 경로 4개
 rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
 #추천 장소 설명 4개
@@ -128,16 +126,15 @@ image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab3, name, googlelink, intro, image1, image2, image3)
 
-# --------------------------(다대포해수욕장)-------------------------
-
+# --------------------------(월미테마파크)-------------------------
 #관광지명
 name = list[3]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EB%8B%A4%EB%8C%80%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568dd14c8f34565:0x9ef60b3754f60850!8m2!3d35.0469015!4d128.9662387!16s%2Fg%2F122_gqsw?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EC%9B%94%EB%AF%B8%ED%85%8C%EB%A7%88%ED%8C%8C%ED%81%AC/data=!3m2!1e3!4b1!4m6!3m5!1s0x357b82884e45dfff:0x5184d1be20d0fa05!8m2!3d37.4713635!4d126.5962858!16s%2Fg%2F1tk1ky1p?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Dadaepo Beach is made from sands deposited by the Nakdonggang River. It features shallow water and a wide sand beach suitable for children. Water activities can be enjoyed at the beach such as paddleboarding, kiteboarding and more. More visitors have been attracted after the addition of a coastal park and walking paths. At the entrance of the beach, there is a grand plaza with a large-scale musical floor fountain. Visitors can enjoy the musical fountain from late-April to October.'''
+intro = '''Wolmi Theme Park is located on Wolmido Island in Incheon. Spanning 13,200 square meters, it features various amusement rides including a ferris wheel, swing boat, and go-karts. One of its highlights is the tagada ride, where riders sit on circular seats that move in all directions to the beat of music while a DJ adds to the excitement. Visitors can also enjoy panoramic views of Songdo Town, the Incheondaegyo Bridge, and Yeongjongdaegyo Bridge from the ferris wheel.'''
 #추천 장소 4곳
-rec_place = ['몰운대', '아미산전망대', '해운대 해수욕장', '감천문화마을']
+rec_place = ['월미도', '송월동동화마을', '인천차이나타운', '을왕리해수욕장']
 #추천 장소 이미지 경로 4개
 rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
 #추천 장소 설명 4개
@@ -152,16 +149,15 @@ image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab4, name, googlelink, intro, image1, image2, image3)
 
-# --------------------------(해운대 포장마차촌)-------------------------
-
+# --------------------------(송월동동화마을)-------------------------
 #관광지명
 name = list[4]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%8F%AC%EC%9E%A5%EB%A7%88%EC%B0%A8%EC%B4%8C/data=!3m2!1e3!4b1!4m6!3m5!1s0x35688d58f2092243:0xb49654b3d06d8fff!8m2!3d35.1583788!4d129.1569762!16s%2Fg%2F11c1vms3db?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Bada Maeul Pojang Macha Chon, or Ocean City Street Food Alley, is located behind Haeundae Beach and has been in operation for over 20 years. The Ocean City Street Food Alley has over 40 street carts. It was especially famous for its lobster dishes, which included a large steamed lobster and lobster ramyeon, among other freshly caught seafood.'''
+intro = '''Songwol-dong was named for its view of the moon between the pine forest. The opening of Incheon Port in 1883 led to the start of many foreigners coming into the area for settlement, and it turned into a rich village. However, young people gradually moved out, leaving the village in a state of stagnation. As such, a renovation project was brought about to improve the development of the village by decorating with murals and sculptures of classic fairy tales.'''
 #추천 장소 4곳
-rec_place = ['해운대 해수욕장', '해운대 달맞이길', '해물포장마차촌', '동백섬']
+rec_place = ['인천차이나타운', '월미도', '월미테마파크', '영종도']
 #추천 장소 이미지 경로 4개
 rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
 #추천 장소 설명 4개
