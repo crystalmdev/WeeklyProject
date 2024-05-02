@@ -1,11 +1,14 @@
 import streamlit as st
+import pandas as pd
 from PIL import Image
-import numpy as np # TEST
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
 st.header('Busan')
 list = ['Gwangalli beach', 'Lotte World Busan', 'Haeundae Beach', 'Dadaepo Beach', 'Haeundae Street food alley']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
-def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
+def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3):
     with (tabnum):
         st.subheader(name)
         # st.markdown('**Train: 3hrs 24 min / Bus: 5hrs 2 min** (departure from seoul)')
@@ -53,10 +56,47 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
             st.image(Image.open(image2),
                      use_column_width=True)
         with col2:
-            st.markdown('**스타차트로 변경**')
-            st.text('(based on Korean blog reviews)')
-            st.image(Image.open(image3),
-                     use_column_width=True)
+            st.markdown('**Most Visited Month**')
+            st.text('(based on Korean reviews)')
+            data1 = pd.read_csv(data)
+            data1[['Year', 'Month', 'Day']] = data1['날짜'].str.rstrip('.').str.split('.', expand=True)
+            popular_month = pd.DataFrame(data1.Month.value_counts().sort_index())
+            popular_month['month'] = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            fig = px.pie(popular_month, values='count',
+                         names='month', hover_data=['count'],
+                         labels={'count': 'Count'},
+                         width=400, height=400, hole=0.3)
+
+            fig.update_traces(textinfo='percent+label', textfont_size=14, textposition='inside')
+            fig.update_layout(showlegend=False)
+            st.plotly_chart(fig)
+
+        st.divider()
+
+        st.markdown('**Positive/Negative Ratio**')
+        st.text('(based on Korean reviews)')
+        data = {'Category': ['Total'],
+                'Positive': [pos],
+                'Negative': [neg]}
+        df = pd.DataFrame(data)
+
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            y=df['Category'], x=df['Positive'],
+            name='Positive', orientation='h',
+            marker=dict(color='green')
+        ))
+        fig.add_trace(go.Bar(
+            y=df['Category'], x=df['Negative'],
+            name='Negative', orientation='h',
+            marker=dict(color='red')
+        ))
+
+        fig.update_layout(xaxis_title='Category', yaxis_title='Value')
+        st.plotly_chart(fig)
+
+        with st.expander('Bigram NetworkX Graph'):
+            st.image(Image.open(image3), use_column_width=True)
 
 # --------------------------(광안리해수욕장)-------------------------
 
@@ -81,11 +121,18 @@ rec_caption = ['Songjeong Beach is ideal for families with young children becaus
 # 관광지 Image
 image1 = './img/수정/광안리해수욕장.jpeg'
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
-#그래프
-image3 = './img/예시/graph.png'
+image2 = './img/수정/부산/광안리해수욕장 워드클라우드.png'
+#파이차트 경로
+data = 'data/부산/광안리해수욕장.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab1, name, googlelink, intro, image1, image2, image3)
+tabs(tab1, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(롯데월드 어드밴처 부산)-------------------------
 #관광지명
@@ -109,11 +156,17 @@ rec_caption = [rec_caption[0], #송정해수욕장
 # 관광지 Image
 image1 = './img/수정/롯데월드부산.jpg'
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
-#그래프
-image3 = './img/예시/graph.png'
+image2 = './img/수정/부산/롯데월드 어드벤처 부산 워드클라우드.png'
+#파이차트 경로
+data = 'data/부산/광안리해수욕장.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab2, name, googlelink, intro, image1, image2, image3)
+tabs(tab2, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(해운대해수욕장)-------------------------
 #관광지명
@@ -137,11 +190,17 @@ rec_caption = ["Dongbaekseom Island (Island of Camellias) is an island located o
 # 관광지 Image
 image1 = './img/수정/해운대해수욕장.jpeg'
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
-#그래프
-image3 = './img/예시/graph.png'
+image2 = './img/수정/부산/해운대해수욕장 워드클라우드.png'
+#파이차트 경로
+data = 'data/부산/광안리해수욕장.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab3, name, googlelink, intro, image1, image2, image3)
+tabs(tab3, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(다대포해수욕장)-------------------------
 
@@ -167,11 +226,17 @@ rec_caption = ['Morundae-gil Trail, starting from Noeuljeong Pavilion and coveri
 # 관광지 Image
 image1 = './img/수정/다대포해수욕장.jpeg'
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
-#그래프
-image3 = './img/예시/graph.png'
+image2 = './img/수정/부산/다대포해수욕장 워드클라우드.png'
+#파이차트 경로
+data = 'data/부산/광안리해수욕장.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab4, name, googlelink, intro, image1, image2, image3)
+tabs(tab4, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(해운대 포장마차촌)-------------------------
 
@@ -196,8 +261,14 @@ rec_caption = ['Haeundae Beach is the most famous beach in Busan. The white sand
 # 관광지 Image
 image1 = './img/수정/해운대포장마차촌.jpeg'
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
-#그래프
-image3 = './img/예시/graph.png'
+image2 = './img/수정/부산/해운대 포장마차촌 워드클라우드.png'
+#파이차트 경로
+data = 'data/부산/광안리해수욕장.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab5, name, googlelink, intro, image1, image2, image3)
+tabs(tab5, name, googlelink, intro, image1, image2, data, pos, neg, image3)

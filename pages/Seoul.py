@@ -90,7 +90,7 @@ rec_caption = [dict['경복궁'][2], dict['서울어린이대공원'][2], dict['
 # 관광지 Image
 image1 = './img/수정/서울식물원.jpeg'
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/서울/서울식물원 워드클라우드.png'
 #그래프
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -112,7 +112,7 @@ rec_caption = [dict['석촌호수'][2], dict['서울스카이'][2], dict['서울
 # 관광지 Image 1
 image1 = './img/수정/롯데월드.png'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/서울/롯데월드 어드벤처 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -134,7 +134,7 @@ rec_caption = [dict['서촌한옥마을'][2], dict['덕수궁'][2], dict['광화
 # 관광지 Image 1
 image1 = './img/수정/경복궁.webp'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/서울/경복궁 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -156,7 +156,7 @@ rec_caption = [dict['송리단길'][2], dict['롯데월드 어드벤처'][2], di
 # 관광지 Image 1
 image1 = './img/수정/석촌호수.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/서울/석촌호수 서호 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -178,7 +178,7 @@ rec_caption = [dict['남산서울타워'][2], dict['우리유황온천'][2], dic
 # 관광지 Image 1
 image1 = './img/수정/서울어린이대공원.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/서울/서울어린이대공원 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)

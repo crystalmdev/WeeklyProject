@@ -88,7 +88,7 @@ rec_caption = [dict['월미테마파크'][2], dict['영종도'][2], dict['인천
 # 관광지 Image
 image1 = './img/수정/월미도.jpeg'
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/인천/월미도 워드클라우드.png'
 #그래프
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -110,7 +110,7 @@ rec_caption = [dict['송월동동화마을'][2], dict['월미도'][2], dict['월
 # 관광지 Image 1
 image1 = './img/수정/인천차이나타운.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/인천/인천차이나타운 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -132,7 +132,7 @@ rec_caption = [dict['소래산'][2], dict['소래습지생태공원'][2], dict['
 # 관광지 Image 1
 image1 = './img/수정/인천대공원.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/인천/인천대공원 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -154,7 +154,7 @@ rec_caption = [dict['월미도'][2], dict['송월동동화마을'][2], dict['인
 # 관광지 Image 1
 image1 = './img/수정/월미테마파크.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/인천/월미테마파크 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -176,7 +176,7 @@ rec_caption = [dict['인천차이나타운'][2], dict['월미도'][2], dict['월
 # 관광지 Image 1
 image1 = './img/수정/송월동동화마을.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/인천/송월동동화마을 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)

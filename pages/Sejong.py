@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import numpy as np # TEST
 st.header('Sejong')
-list = ['Sejong National Arboretum', 'Dodori Park', 'Gobok Reservoir', 'Jochiwon Theme Street', 'Atijou']
+list = ['Sejong National Arboretum', 'Dodori Park', 'Gobok Reservoir', 'Jochiwon Theme Street', 'Sejong Attige']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
 def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
@@ -90,7 +90,7 @@ rec_caption = [dict['금강수목원'][2], dict['베어트리파크'][2], dict['
 # 관광지 Image
 image1 = dict['국립세종수목원'][1]
 #Wordcloud
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/세종/국립세종수목원 워드클라우드.png'
 #그래프
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -112,7 +112,7 @@ rec_caption = [dict['조치원테마거리'][2], dict['금강수목원'][2], dic
 # 관광지 Image 1
 image1 = './img/수정/도도리파크.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/세종/도도리파크 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -134,7 +134,7 @@ rec_caption = [dict['고복자연공원'][2], dict['금강수목원'][2], dict['
 # 관광지 Image 1
 image1 = dict['고복저수지'][1]
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/세종/고복저수지 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -156,7 +156,7 @@ rec_caption = [dict['조치원역광장'][2], dict['조천변벛꽃길'][2], dic
 # 관광지 Image 1
 image1 = dict['조치원테마거리'][1]
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/세종/조치원테마거리 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
@@ -178,7 +178,7 @@ rec_caption = [dict['세종미니멀주'][2], dict['베어트리파크'][2], dic
 # 관광지 Image 1
 image1 = './img/수정/아띠쥬.jpeg'
 #Wordcloud Image 2
-image2 = './img/인화/대릉원 워드클라우드.png'
+image2 = './img/수정/세종/아띠쥬 워드클라우드.png'
 #그래프 Image 3
 image3 = './img/예시/graph.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
