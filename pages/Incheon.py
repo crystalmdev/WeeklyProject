@@ -66,10 +66,10 @@ dict = {
     '송월동동화마을' : ['Songwol-dong Fairy Tale Village ', './img/수정/송월동동화마을.jpeg', "Songwol-dong was named for its view of the moon between the pine forest. The opening of Incheon Port in 1883 led to the start of many foreigners coming into the area for settlement, and it turned into a rich village."],
     '소래산': ['Soraesan Mountain ','./img/수정/소래산.jpeg',"Soraesan Mountain, with an altitude of 299 meters, is situated between Siheung and Incheon. Its name 'Sorae' originates from the area's old name, reflecting its rich heritage. The scenic mountain features a forest park, badminton courts, basketball courts, futsal fields, and various other amenities."],
     '소래습지생태공원': ['Sorae Marsh Ecological Park','./img/수정/소래습지생태공원.jpeg',"Sorae Marsh Ecological Park is located on a vast plot of land in Incheon. The walking paths by the salt storage and the windmill are especially popular photo points. Many people visit in fall for the shimmering silver grass, said to appear in many colors depending on the lighting."],
-    '강화도':['Ganghwado Island','./img/수정/월미도.jpeg'],
-    '원인재':[,],
+    '강화도':['Ganghwado Island','./img/수정/강화도.webp', "Ganghwado Island, off the west coast, is the fifth largest island in Korea. The island was connected to the mainland in 1970 with the construction of the Ganghwagyo Bridge."],
+    '원인재':['Woninjae','./img/수정/원인재.jpeg', "Woninjae is the place to guard the tomb site of Lee Heo-gyeom, founder of the Incheon Lee clan, and hold memorial services. It is known to have been established in the early 1800s and has been designated as the fifth Incheon Cultural Property."],
     '월미도':['Wolmido Island', './img/수정/월미도.jpeg' ,"Wolmido Island has very few historical records, despite being the location of a temporary palace, built in 1653 during the reign of King Hyojong. On weekends and holidays, people flock to Wolmido Island to enjoy coffee and fresh seafood at the cafes and restaurants overlooking the sea."],
-    '을왕리해수욕장':[,]
+    '을왕리해수욕장':['Eurwang-ri Beach', './img/수정/을왕리해수욕장.webp', "Eurwang-ri Beach, located in Jung-gu, Incheon, was designated as a National Tourist Site in 1986. Approximately 700 meters in length with an average depth of only 1.5 meters, the beautiful white sand beach is known for amazing sunsets."]
         }
 
 # --------------------------(월미도)-------------------------
@@ -108,7 +108,7 @@ rec_place_img = [dict['송월동동화마을'][1], dict['월미도'][1], dict['�
 #추천 장소 설명 4개
 rec_caption = [dict['송월동동화마을'][2], dict['월미도'][2], dict['월미테마파크'][2], dict['영종도'][2]]
 # 관광지 Image 1
-image1 = './img/수정/롯데월드부산.jpg'
+image1 = './img/수정/인천차이나타운.jpeg'
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3
@@ -130,7 +130,7 @@ rec_place_img = [dict['소래산'][1], dict['소래습지생태공원'][1], dict
 #추천 장소 설명 4개
 rec_caption = [dict['소래산'][2], dict['소래습지생태공원'][2], dict['강화도'][2], dict['원인재'][2]]
 # 관광지 Image 1
-image1 = './img/수정/해운대해수욕장.jpeg'
+image1 = './img/수정/인천대공원.jpeg'
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3
@@ -152,7 +152,7 @@ rec_place_img = [dict['월미도'][1], dict['송월동동화마을'][1], dict['�
 #추천 장소 설명 4개
 rec_caption = [dict['월미도'][2], dict['송월동동화마을'][2], dict['인천차이나타운'][2], dict['을왕리해수욕장'][2]]
 # 관광지 Image 1
-image1 = './img/수정/다대포해수욕장.jpeg'
+image1 = './img/수정/월미테마파크.jpeg'
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3
@@ -164,7 +164,7 @@ tabs(tab4, name, googlelink, intro, image1, image2, image3)
 #관광지명
 name = list[4]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EC%86%A1%EC%9B%94%EB%8F%99+%EB%8F%99%ED%99%94%EB%A7%88%EC%9D%84/data=!3m2!1e3!4b1!4m6!3m5!1s0x357b7890a5f6f6e5:0x9a58c742ca9c139a!8m2!3d37.4776611!4d126.6205827!16s%2Fg%2F11c1qrvt9w?hl=ko&entry=ttu'
 #관광지 소개 글
 intro = '''Songwol-dong was named for its view of the moon between the pine forest. The opening of Incheon Port in 1883 led to the start of many foreigners coming into the area for settlement, and it turned into a rich village. However, young people gradually moved out, leaving the village in a state of stagnation. As such, a renovation project was brought about to improve the development of the village by decorating with murals and sculptures of classic fairy tales.'''
 #추천 장소 4곳
@@ -174,7 +174,7 @@ rec_place_img = [dict['인천차이나타운'][1], dict['월미도'][1], dict['�
 #추천 장소 설명 4개
 rec_caption = [dict['인천차이나타운'][2], dict['월미도'][2], dict['월미테마파크'][2], dict['영종도'][2]]
 # 관광지 Image 1
-image1 = './img/수정/해운대포장마차촌.jpeg'
+image1 = './img/수정/송월동동화마을.jpeg'
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3

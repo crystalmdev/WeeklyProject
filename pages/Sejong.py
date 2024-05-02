@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import numpy as np # TEST
 st.header('Sejong')
-list = ['Sejong National Arboretum', '도도리파크', '고복저수지', '조치원테마거리', '아띠쥬']
+list = ['Sejong National Arboretum', 'Dodori Park', 'Gobok Reservoir', 'Jochiwon Theme Street', 'Atijou']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
 def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
@@ -57,22 +57,38 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
             st.image(Image.open(image3),
                      use_column_width=True)
 
+# -------------------------(dict)-----------------------------
+dict = {
+    '금강수목원':['Geumgang Recreational Forest', './img/수정/금강수목원.jpeg', "Geumgang Recreational Forest is different from other recreational forests. Rather than a dense forest with a trail, this forest has a variety of attractions such as the Forest Museum, an arboretum, greenhouse, pond, and wildlife park scattered on well-maintained roads, giving the impression of a city park."],
+    '베어트리파크':['Beartree Park', './img/수정/베어트리파크.jpeg', "Beartree Park is a beautiful natural space in Sejong founded by entrepreneur Lee Jae-yeon. The park first started out as a private garden cared for by Lee personally."],
+    '밀마루전망대':['Milmaru Tower', './img/수정/밀마루전망대.jpeg', "Located at the center of the Sejong Administrative Town, Milmaru Observatory is designed to provide a view of the city in every direction. You can see the ever-changing Sejong City at one glance as well as neighboring regions such as Gongju and Jochiwon."],
+    '조치원테마거리':[list[3], './img/수정/조치원테마거리.jpeg', "Jochiwon Theme Street is a theme street created using the traditional market in Jochiwon-eup, Chungcheongnam-do. This is a place where you can feel the old atmosphere by reproducing the appearance of Jochiwon-eupseong Fortress during the Joseon Dynasty."],
+    '조치원역광장':['Jochiwon Station Square', './img/수정/조치원역광장.jpeg', "Jochiwon Station, which resembles the Chinese character for a bird (bird), opened for business on January 1, 1905 as Botong Station on the Gyeongbu Line."],
+    '국립세종수목원':[list[0], './img/수정/국립세종수목원.jpeg', "The Sejong National Arboretum, which is about to open as the first urban arboretum in Korea, was built on an area adjacent to the Sejong Government Complex. It is possible to see 2,834 species of 1.72 million plants (including 45,958 trees) under various themes such as the nation's largest four-season greenhouse, traditional Korean garden, Cheongryujiwon for study, and bonsai garden."],
+    '고복자연공원':['Gobok Natural Park', './img/수정/고복자연공원.jpeg', "Gobok Natural Park spans an area of 1,840,000 square meters and nearby attractions include a forest, Yonggul Cave, Sinheungsa Temple, and an outdoor sculpture park on Obongsan Mountain."],
+    '도담동먹자골목':['Dodam-dong Food Alley', './img/수정/도담동먹자골목.jpeg', "Dodam-dong Food Alley is one of the centers of the Dodam-dong commercial district. There is a wide range of delicious restaurants, from the 'Karim Avenue Hill Shopping Mall' backed by the Dodam-dong Fresh Market parking lot to the 'Shopping Mall in Doram Village Complex 7 and 8' to the 'Dodam-dong Food Alley' with Bangchukcheon in the background."],
+    '비학산':['Bihaksan Mountain', './img/수정/비학산.jpeg', "Bihaksan Mountain, located in Geumnam-myeon, Sejong City, was named so because the mountain resembles a flying crane. The height of Bihaksan Mountain is 162.5m above sea level, and Ilchulbong Peak is also not very high at 228m, so it is a mountain that people of all ages and genders can easily go for a walk."],
+    '조천변벛꽃길':['Jocheonside cherry blossom road', './img/수정/조천변벛꽃길.jpeg', "The cherry blossom road along Jocheon is a famous spot in Sejong City that many citizens visit every year. You can enjoy the beauty of spring by walking through the cherry blossom tunnel that stretches for several kilometers along the embankment."],
+    '고복저수지':[list[2], './img/수정/고복저수지.jpeg', "Gobok Reservoir is located in the Gobok-ri and Yongam-ri areas of Yeonseo-myeon, Sejong Special Self-Governing City. There are restaurants and cafes specializing in duck meat dishes and catfish spicy stew scattered around the reservoir, and many tourists come to enjoy them on weekends."],
+    '세종미니멀주':['Sejong Minimal Zoo', './img/수정/세종미니멀주.jpeg', "Sejong Minimal Zoo is an urban zoo where you can see, hear and interact with animals."],
+    '세종공룡월드':['Sejong Dinosaur World', './img/수정/세종공룡월드.jpeg', 'Sejong Dinosaur World offers dinosaurs from the Jurassic period. Enjoy a realistic walking dinosaur show and a magic show at Asan Dinosaur World with 500 seats at a reasonable price.']
+}
+
 # --------------------------(국립세종수목원)-------------------------
 #관광지명
 name = list[0]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EA%B5%AD%EB%A6%BD%EC%84%B8%EC%A2%85%EC%88%98%EB%AA%A9%EC%9B%90/data=!3m2!1e3!4b1!4m6!3m5!1s0x357acb4a4c989b5b:0x892194666573b3e9!8m2!3d36.4978379!4d127.2854901!16s%2Fg%2F155q41_z?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''The Sejong National Arboretum, which is about to open as the first urban arboretum in Korea, was built on an area of ​​65 ha adjacent to the Sejong Government Complex, where several government ministries are located. It is possible to see 2,834 species of 1.72 million plants (including 45,958 trees) under various themes such as the nation's largest four-season greenhouse, traditional Korean garden, Cheongryujiwon for study, and bonsai garden. It is another national arboretum established following the Baekdudaegan National Arboretum following the National Arboretum Expansion Plan for conserving and developing genetic tree resources by climate and vegetation zone.'''
+intro = '''The Sejong National Arboretum, which is about to open as the first urban arboretum in Korea, was built on an area of 65 ha adjacent to the Sejong Government Complex, where several government ministries are located. It is possible to see 2,834 species of 1.72 million plants (including 45,958 trees) under various themes such as the nation's largest four-season greenhouse, traditional Korean garden, Cheongryujiwon for study, and bonsai garden. It is another national arboretum established following the Baekdudaegan National Arboretum following the National Arboretum Expansion Plan for conserving and developing genetic tree resources by climate and vegetation zone.'''
 #추천 장소 4곳
-rec_place = ['금강수목원', '베어트리파크', '밀마루전망대', '금강자연휴양림']
+rec_place = [dict['금강수목원'][0], dict['베어트리파크'][0], dict['밀마루전망대'][0], dict['조치원테마거리'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
+rec_place_img = [dict['금강수목원'][1], dict['베어트리파크'][1], dict['밀마루전망대'][1], dict['조치원테마거리'][1]]
 #추천 장소 설명 4개
-rec_caption = ['theme park located in seoul... etc 기타 간단한 영어 설명 - 번역기 돌려도 됨', 'theme park located in seoul... etc',
-               'theme park located in seoul... etc', 'theme park located in seoul... etc']
+rec_caption = [dict['금강수목원'][2], dict['베어트리파크'][2], dict['밀마루전망대'][2], dict['조치원테마거리'][2]]
 # 관광지 Image
-image1 = './img/수정/광안리해수욕장.jpeg'
+image1 = dict['국립세종수목원'][1]
 #Wordcloud
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프
@@ -84,18 +100,17 @@ tabs(tab1, name, googlelink, intro, image1, image2, image3)
 #관광지명
 name = list[1]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EB%8F%84%EB%8F%84%EB%A6%AC%ED%8C%8C%ED%81%AC/data=!3m2!1e3!4b1!4m6!3m5!1s0x357ad314052ee56f:0x357da527de9363d0!8m2!3d36.5975243!4d127.2869857!16s%2Fg%2F11s8_xc035?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Lotte World Adventure opened in Busan, where visitors can experience fun and exciting performances and parades. Busan Lotte World is built in Busan and has convenient access using public transportation, leading to many visitors since the first day of its opening. Lotte World Adventure Busan consists of six themed zones. At the heart of the fairy village, Tinker Falls Zone, is the Talking Tree, which uses animatronic technology to tell the story of six themes in the park. Rory Castle in the Royal Garden Zone, located at the highest point in Lotte World, is designed to look like it is floating on water, and visitors can enjoy the view of Busan and the sea in front of Gijang at a glance. Other rides, especially the Giant Digger and Giant Splash, have already received word-of-mouth excitement. As such, there are not only attractions for adults, but also amusement rides for families with young children. It is placed indoors so that children can safely enjoy it regardless of the weather. The parade, the highlight of the amusement park, runs twice a day for about 30 minutes.'''
+intro = '''Dodori Park, a rural theme park, is a space for citizens to recognize the value and importance of rural resources and to continuously conserve and promote them. Within Dodori Park, there is a fresh market (farmer's market) to provide safe food to citizens and a place where people can experience various things using local agricultural products. In addition, there are play spaces such as the indoor Dodori Tower and the outdoor Dodori Adventure and Maze Park, so anyone can come and enjoy.'''
 #추천 장소 4곳
-rec_place = ['조치원 테마거리', '금강수목원', '조치원역광장', '국립세종수목원 민속식물원']
+rec_place = [dict['조치원테마거리'][0], dict['금강수목원'][0], dict['조치원역광장'][0], dict['국립세종수목원'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
+rec_place_img = [dict['조치원테마거리'][1], dict['금강수목원'][1], dict['조치원역광장'][1], dict['국립세종수목원'][1]]
 #추천 장소 설명 4개
-rec_caption = ['theme park located in seoul... etc 기타 간단한 영어 설명 - 번역기 돌려도 됨', 'theme park located in seoul... etc',
-               'theme park located in seoul... etc', 'theme park located in seoul... etc']
+rec_caption = [dict['조치원테마거리'][2], dict['금강수목원'][2], dict['조치원역광장'][2], dict['국립세종수목원'][2]]
 # 관광지 Image 1
-image1 = './img/수정/롯데월드부산.jpg'
+image1 = './img/수정/도도리파크.jpeg'
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3
@@ -107,18 +122,17 @@ tabs(tab2, name, googlelink, intro, image1, image2, image3)
 #관광지명
 name = list[2]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EA%B3%A0%EB%B3%B5%EC%A0%80%EC%88%98%EC%A7%80/data=!3m2!1e3!4b1!4m6!3m5!1s0x357acdf2be5de3e9:0xf1494528e7291562!8m2!3d36.602851!4d127.231805!16s%2Fg%2F119pfnw_h?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Haeundae Beach is the most famous beach in Busan. The white sand beach is roughly 1.5 kilometers long, over a 30- to 50-meter wide area, creating a beautiful coastline before a shallow bay, making it perfect for swimming. People flock to Haeundae Beach every summer. All kinds of accommodations from luxury hotels to private guesthouses have developed in the area around the beach, making this the perfect summer vacation spot. Haeundae Beach is also famous for various cultural events and festivals held throughout the year. Other facilities in the area include Dongbaekseom Island, Busan Aquarium, a yachting dock, BEXCO, driving courses and more.'''
+intro = '''If you leave Yeonhwasa Temple and go to Gobok-ri, Yeonseo-myeon, you will come across Gobok Reservoir with a large area of 1.949㎢ (1.142㎢ in Gobok-ri, 0.807㎢ in Yongam-ri). There is 'Minrakjeong' in the middle of Gobok Reservoir. If you climb up the pavilion and look out over the reservoir, the view is also spectacular. Around Gobok Reservoir, there are restaurants specializing in herbal duck and spicy catfish soup to whet the appetite of gourmets. The surrounding village has an orchard complex growing grapes, peaches, and pears, as well as commercial facilities, lodging facilities, and various public facilities.'''
 #추천 장소 4곳
-rec_place = ['고복자연공원', '금강수목원', '도담동먹자골목', '비학산']
+rec_place = [dict['고복자연공원'][0], dict['금강수목원'][0], dict['도담동먹자골목'][0], dict['비학산'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
+rec_place_img = [dict['고복자연공원'][1], dict['금강수목원'][1], dict['도담동먹자골목'][1], dict['비학산'][1]]
 #추천 장소 설명 4개
-rec_caption = ['theme park located in seoul... etc 기타 간단한 영어 설명 - 번역기 돌려도 됨', 'theme park located in seoul... etc',
-               'theme park located in seoul... etc', 'theme park located in seoul... etc']
+rec_caption = [dict['고복자연공원'][2], dict['금강수목원'][2], dict['도담동먹자골목'][2], dict['비학산'][2]]
 # 관광지 Image 1
-image1 = './img/수정/해운대해수욕장.jpeg'
+image1 = dict['고복저수지'][1]
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3
@@ -130,18 +144,17 @@ tabs(tab3, name, googlelink, intro, image1, image2, image3)
 #관광지명
 name = list[3]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EC%A1%B0%EC%B9%98%EC%9B%90+%ED%85%8C%EB%A7%88%EA%B1%B0%EB%A6%AC/data=!3m2!1e3!4b1!4m6!3m5!1s0x35652d384eb92f2f:0x2b9666daae1edbd1!8m2!3d36.6007996!4d127.3009819!16s%2Fg%2F11s8gj75kj?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Dadaepo Beach is made from sands deposited by the Nakdonggang River. It features shallow water and a wide sand beach suitable for children. Water activities can be enjoyed at the beach such as paddleboarding, kiteboarding and more. More visitors have been attracted after the addition of a coastal park and walking paths. At the entrance of the beach, there is a grand plaza with a large-scale musical floor fountain. Visitors can enjoy the musical fountain from late-April to October.'''
+intro = dict['조치원테마거리'][2]
 #추천 장소 4곳
-rec_place = ['조치원역광장', '조천변벛꽃길', '베어트리파크', '고복저수지']
+rec_place = [dict['조치원역광장'][0], dict['조천변벛꽃길'][0], dict['베어트리파크'][0], dict['고복저수지'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
+rec_place_img = [dict['조치원역광장'][1], dict['조천변벛꽃길'][1], dict['베어트리파크'][1], dict['고복저수지'][1]]
 #추천 장소 설명 4개
-rec_caption = ['theme park located in seoul... etc 기타 간단한 영어 설명 - 번역기 돌려도 됨', 'theme park located in seoul... etc',
-               'theme park located in seoul... etc', 'theme park located in seoul... etc']
+rec_caption = [dict['조치원역광장'][2], dict['조천변벛꽃길'][2], dict['베어트리파크'][2], dict['고복저수지'][2]]
 # 관광지 Image 1
-image1 = './img/수정/다대포해수욕장.jpeg'
+image1 = dict['조치원테마거리'][1]
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3
@@ -153,18 +166,17 @@ tabs(tab4, name, googlelink, intro, image1, image2, image3)
 #관광지명
 name = list[4]
 #관광지 구글 링크
-googlelink = 'https://www.google.com/maps/place/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5/data=!3m2!1e3!4b1!4m6!3m5!1s0x3568ed2f27c70ec7:0xff6df0e14d9216fb!8m2!3d35.1531696!4d129.118666!16s%2Fm%2F03hp9yc?hl=ko&entry=ttu'
+googlelink = 'https://www.google.com/maps/place/%EB%AF%B8%EB%8B%88%EB%A9%80%EC%A3%BC+%EC%84%B8%EC%A2%85%EC%A0%90/data=!3m1!1e3!4m10!1m2!2m1!1z7IS47KKFIOyVhOudoOyjvA!3m6!1s0x357acb1bd5ce725b:0x394f4ca02156bcb!8m2!3d36.4739818!4d127.2748139!15sChDshLjsooUg7JWE652g7KO8kgEDem9v4AEA!16s%2Fg%2F11kj25lxxj?hl=ko&entry=ttu'
 #관광지 소개 글
-intro = '''Bada Maeul Pojang Macha Chon, or Ocean City Street Food Alley, is located behind Haeundae Beach and has been in operation for over 20 years. The Ocean City Street Food Alley has over 40 street carts. It was especially famous for its lobster dishes, which included a large steamed lobster and lobster ramyeon, among other freshly caught seafood.'''
+intro = '''Sejong Attige, located on the 7th floor of the Happy Raum Blue building in Daepyeong-dong, Sejong City, is a small indoor zoo where you can see animals up close and experience feeding them. At the entrance, there is a sculpture of a cute panda bear family, so children have fun taking pictures.'''
 #추천 장소 4곳
-rec_place = ['미니멀주 세종점', '베어트리파크', '금강수목원', '세종공룡월드']
+rec_place = [dict['세종미니멀주'][0], dict['베어트리파크'][0], dict['금강수목원'][0], dict['세종공룡월드'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/예시/ltseoul.png', './img/예시/everland.jpeg', './img/예시/gjworld.jpeg', './img/예시/carrbay.jpeg']
+rec_place_img = [dict['세종미니멀주'][1], dict['베어트리파크'][1], dict['금강수목원'][1], dict['세종공룡월드'][1]]
 #추천 장소 설명 4개
-rec_caption = ['theme park located in seoul... etc 기타 간단한 영어 설명 - 번역기 돌려도 됨', 'theme park located in seoul... etc',
-               'theme park located in seoul... etc', 'theme park located in seoul... etc']
+rec_caption = [dict['세종미니멀주'][2], dict['베어트리파크'][2], dict['금강수목원'][2], dict['세종공룡월드'][2]]
 # 관광지 Image 1
-image1 = './img/수정/해운대포장마차촌.jpeg'
+image1 = './img/수정/아띠쥬.jpeg'
 #Wordcloud Image 2
 image2 = './img/인화/대릉원 워드클라우드.png'
 #그래프 Image 3
