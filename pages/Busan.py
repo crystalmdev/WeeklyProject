@@ -60,13 +60,15 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
             st.text('(based on Korean reviews)')
             data1 = pd.read_csv(data)
             data1[['Year', 'Month', 'Day']] = data1['날짜'].str.rstrip('.').str.split('.', expand=True)
-            popular_month = pd.DataFrame(data1.Month.value_counts().sort_index())
-            popular_month['month'] = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            all_months = data1['Month'].unique()
+            month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            filtered_month_list = [month_list[int(month) - 1] for month in all_months]
+            popular_month = pd.DataFrame(data1['Month'].value_counts().sort_index())
+            popular_month['month'] = filtered_month_list
             fig = px.pie(popular_month, values='count',
                          names='month', hover_data=['count'],
                          labels={'count': 'Count'},
                          width=400, height=400, hole=0.3)
-
             fig.update_traces(textinfo='percent+label', textfont_size=14, textposition='inside')
             fig.update_layout(showlegend=False)
             st.plotly_chart(fig)
