@@ -160,7 +160,7 @@ image1 = './img/수정/롯데월드부산.jpg'
 #Wordcloud
 image2 = './img/수정/부산/롯데월드 어드벤처 부산 워드클라우드.png'
 #파이차트 경로
-data = 'data/부산/광안리해수욕장.csv'
+data = 'data/부산/롯데월드 어드벤처 부산.csv'
 #Positive 개수
 pos = 200
 #Negative 개수
@@ -194,7 +194,7 @@ image1 = './img/수정/해운대해수욕장.jpeg'
 #Wordcloud
 image2 = './img/수정/부산/해운대해수욕장 워드클라우드.png'
 #파이차트 경로
-data = 'data/부산/광안리해수욕장.csv'
+data = 'data/부산/해운대해수욕장.csv'
 #Positive 개수
 pos = 200
 #Negative 개수
@@ -230,7 +230,7 @@ image1 = './img/수정/다대포해수욕장.jpeg'
 #Wordcloud
 image2 = './img/수정/부산/다대포해수욕장 워드클라우드.png'
 #파이차트 경로
-data = 'data/부산/광안리해수욕장.csv'
+data = 'data/부산/다대포해수욕장.csv'
 #Positive 개수
 pos = 200
 #Negative 개수
@@ -265,7 +265,7 @@ image1 = './img/수정/해운대포장마차촌
 #Wordcloud
 image2 = './img/수정/부산/해운대 포장마차촌 워드클라우드.png'
 #파이차트 경로
-data = 'data/부산/광안리해수욕장.csv'
+data = 'data/부산/해운대포장마차촌.csv'
 #Positive 개수
 pos = 200
 #Negative 개수
