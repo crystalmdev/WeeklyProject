@@ -1,13 +1,18 @@
 import streamlit as st
+import pandas as pd
 from PIL import Image
-import numpy as np # TEST
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+
 st.header('Incheon')
 list = ['Wolmido Island', 'Incheon Chinatown', 'Incheon Grand Park', 'Wolmi Theme Park', 'Songwol-dong Fairy Tale Village ']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
-def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
+def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3):
     with (tabnum):
         st.subheader(name)
+        # st.markdown('**Train: 3hrs 24 min / Bus: 5hrs 2 min** (departure from seoul)')
         col1, col2, col3, col4 = st.columns([1.5,1.3,1,1])
         with col1:
             st.markdown('**How To Get There:**')
@@ -52,13 +57,52 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
             st.image(Image.open(image2),
                      use_column_width=True)
         with col2:
-            st.markdown('**스타차트로 변경**')
-            st.text('(based on Korean blog reviews)')
-            st.image(Image.open(image3),
-                     use_column_width=True)
+            st.markdown('**Most Visited Month**')
+            st.text('(based on Korean reviews)')
+            data1 = pd.read_csv(data)
+            data1[['Year', 'Month', 'Day']] = data1['날짜'].str.rstrip('.').str.split('.', expand=True)
+            all_months = data1['Month'].unique()
+            month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            filtered_month_list = [month_list[int(month) - 1] for month in all_months]
+            popular_month = pd.DataFrame(data1['Month'].value_counts().sort_index())
+            popular_month['month'] = filtered_month_list
+            fig = px.pie(popular_month, values='count',
+                         names='month', hover_data=['count'],
+                         labels={'count': 'Count'},
+                         width=400, height=400, hole=0.3)
+            fig.update_traces(textinfo='percent+label', textfont_size=14, textposition='inside')
+            fig.update_layout(showlegend=False)
+            st.plotly_chart(fig)
+
+        st.divider()
+
+        st.markdown('**Positive/Negative Ratio**')
+        st.text('(based on Korean reviews)')
+        data = {'Category': ['Total'],
+                'Positive': [pos],
+                'Negative': [neg]}
+        df = pd.DataFrame(data)
+
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            y=df['Category'], x=df['Positive'],
+            name='Positive', orientation='h',
+            marker=dict(color='green')
+        ))
+        fig.add_trace(go.Bar(
+            y=df['Category'], x=df['Negative'],
+            name='Negative', orientation='h',
+            marker=dict(color='red')
+        ))
+
+        fig.update_layout(xaxis_title='Category', yaxis_title='Value')
+        st.plotly_chart(fig)
+
+        with st.expander('Bigram NetworkX Graph'):
+            st.image(Image.open(image3), use_column_width=True)
 
 # -------------------------(dict)-----------------------------
-dict = {
+dict1 = {
     '월미테마파크' : ['Wolmi Theme Park ', './img/수정/월미테마파크.jpeg', 'Wolmi Theme Park is located on Wolmido Island in Incheon. Spanning 13,200 square meters, it features various amusement rides including a ferris wheel, swing boat, and go-karts.'],
     '영종도' : ['Yeongjongdo Island', './img/수정/영종도.webp', 'Yeongjongdo Island, combined with Yongyudo and Sammokdo Islands through land reclamation work, connects to the mainland via Yeongjongdaegyo Bridge and is located 3 kilometers northwest of Yeonan Pier, Incheon.'],
     '인천차이나타운' : ['Incheon Chinatown','./img/수정/인천차이나타운.jpeg', "Incheon's Chinatown came into being with the opening of Incheon Port in 1883 and Incheon's designation as an extraterritoriality of the Ching dynasty in the following year."],
@@ -80,19 +124,26 @@ googlelink = 'https://www.google.com/maps/place/%EC%9B%94%EB%AF%B8%EB%8F%84/data
 #관광지 소개 글
 intro = '''Wolmido Island has very few historical records, despite being the location of a temporary palace, built in 1653 during the reign of King Hyojong. The palace was built on the eastern side of the island, but it is impossible to find traces of it now. From the late 1920s until the '30s, the island was transformed into a resort, a very popular destination at the time. Wolmi Culture Street opened in July 1989 and helped improve the area's fame. On weekends and holidays, people flock to Wolmido Island to enjoy coffee and fresh seafood at the cafes and restaurants overlooking the sea. Despite being 1 kilometer off the coast, Wolmido is no longer an island, being connected to the mainland through modern construction techniques. It is now an easily accessible retreat for locals and tourists alike.'''
 #추천 장소 4곳
-rec_place = [dict['월미테마파크'][0], dict['영종도'][0], dict['인천차이나타운'][0], dict['마시안해변'][0]]
+rec_place = [dict1['월미테마파크'][0], dict1['영종도'][0], dict1['인천차이나타운'][0], dict1['마시안해변'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['월미테마파크'][1], dict['영종도'][1], dict['인천차이나타운'][1], dict['마시안해변'][1]]
+rec_place_img = [dict1['월미테마파크'][1], dict1['영종도'][1], dict1['인천차이나타운'][1], dict1['마시안해변'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['월미테마파크'][2], dict['영종도'][2], dict['인천차이나타운'][2], dict['마시안해변'][2]]
+rec_caption = [dict1['월미테마파크'][2], dict1['영종도'][2], dict1['인천차이나타운'][2], dict1['마시안해변'][2]]
 # 관광지 Image
 image1 = './img/수정/월미도.jpeg'
 #Wordcloud
 image2 = './img/수정/인천/월미도 워드클라우드.png'
-#그래프
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/인천/월미도.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab1, name, googlelink, intro, image1, image2, image3)
+tabs(tab1, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(인천차이나타운)-------------------------
 #관광지명
@@ -102,19 +153,26 @@ googlelink = 'https://www.google.com/maps/place/%EC%9D%B8%EC%B2%9C+%EC%B0%A8%EC%
 #관광지 소개 글
 intro = '''Incheon's Chinatown came into being with the opening of Incheon Port in 1883 and Incheon's designation as an extraterritoriality of the Ching dynasty in the following year. In the past, the area held many stores trading goods imported from China, but currently most Chinese businesses in the area are restaurants. Today, the residents of Chinatown are mostly 2nd or 3rd generation Chinese, descendents of the early Chinese settlers. The area harbors many of the flavors of China, while the traditional culture of the first generation is preserved.'''
 #추천 장소 4곳
-rec_place = [dict['송월동동화마을'][0], dict['월미도'][0], dict['월미테마파크'][0], dict['영종도'][0]]
+rec_place = [dict1['송월동동화마을'][0], dict1['월미도'][0], dict1['월미테마파크'][0], dict1['영종도'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['송월동동화마을'][1], dict['월미도'][1], dict['월미테마파크'][1], dict['영종도'][1]]
+rec_place_img = [dict1['송월동동화마을'][1], dict1['월미도'][1], dict1['월미테마파크'][1], dict1['영종도'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['송월동동화마을'][2], dict['월미도'][2], dict['월미테마파크'][2], dict['영종도'][2]]
+rec_caption = [dict1['송월동동화마을'][2], dict1['월미도'][2], dict1['월미테마파크'][2], dict1['영종도'][2]]
 # 관광지 Image 1
 image1 = './img/수정/인천차이나타운.jpeg'
 #Wordcloud Image 2
 image2 = './img/수정/인천/인천차이나타운 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/인천/인천차이나타운.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab2, name, googlelink, intro, image1, image2, image3)
+tabs(tab2, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(인천대공원)-------------------------
 #관광지명
@@ -124,19 +182,26 @@ googlelink = 'https://www.google.com/maps/place/%EC%9D%B8%EC%B2%9C%EB%8C%80%EA%B
 #관광지 소개 글
 intro = '''Incheon Grand Park is an urban nature park located in Jangsu-dong, Namdong-gu, Incheon. The park is surrounded by Gwanmosan Mountain and Sangasan Mountain. Spanning across 727 acres of land, Incheon Grand Park is the only large-scale natural green park in Incheon. The park provides a pleasant atmosphere for citizens to escape from the city life and enjoy the natural surroundings. Over 4 million people visit the park every year to take in the clean air and relax in nature.'''
 #추천 장소 4곳
-rec_place = [dict['소래산'][0], dict['소래습지생태공원'][0], dict['강화도'][0], dict['원인재'][0]]
+rec_place = [dict1['소래산'][0], dict1['소래습지생태공원'][0], dict1['강화도'][0], dict1['원인재'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['소래산'][1], dict['소래습지생태공원'][1], dict['강화도'][1], dict['원인재'][1]]
+rec_place_img = [dict1['소래산'][1], dict1['소래습지생태공원'][1], dict1['강화도'][1], dict1['원인재'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['소래산'][2], dict['소래습지생태공원'][2], dict['강화도'][2], dict['원인재'][2]]
+rec_caption = [dict1['소래산'][2], dict1['소래습지생태공원'][2], dict1['강화도'][2], dict1['원인재'][2]]
 # 관광지 Image 1
 image1 = './img/수정/인천대공원.jpeg'
 #Wordcloud Image 2
 image2 = './img/수정/인천/인천대공원 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/인천/인천대공원.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab3, name, googlelink, intro, image1, image2, image3)
+tabs(tab3, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(월미테마파크)-------------------------
 #관광지명
@@ -146,19 +211,26 @@ googlelink = 'https://www.google.com/maps/place/%EC%9B%94%EB%AF%B8%ED%85%8C%EB%A
 #관광지 소개 글
 intro = '''Wolmi Theme Park is located on Wolmido Island in Incheon. Spanning 13,200 square meters, it features various amusement rides including a ferris wheel, swing boat, and go-karts. One of its highlights is the tagada ride, where riders sit on circular seats that move in all directions to the beat of music while a DJ adds to the excitement. Visitors can also enjoy panoramic views of Songdo Town, the Incheondaegyo Bridge, and Yeongjongdaegyo Bridge from the ferris wheel.'''
 #추천 장소 4곳
-rec_place = [dict['월미도'][0], dict['송월동동화마을'][0], dict['인천차이나타운'][0], dict['을왕리해수욕장'][0]]
+rec_place = [dict1['월미도'][0], dict1['송월동동화마을'][0], dict1['인천차이나타운'][0], dict1['을왕리해수욕장'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['월미도'][1], dict['송월동동화마을'][1], dict['인천차이나타운'][1], dict['을왕리해수욕장'][1]]
+rec_place_img = [dict1['월미도'][1], dict1['송월동동화마을'][1], dict1['인천차이나타운'][1], dict1['을왕리해수욕장'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['월미도'][2], dict['송월동동화마을'][2], dict['인천차이나타운'][2], dict['을왕리해수욕장'][2]]
+rec_caption = [dict1['월미도'][2], dict1['송월동동화마을'][2], dict1['인천차이나타운'][2], dict1['을왕리해수욕장'][2]]
 # 관광지 Image 1
 image1 = './img/수정/월미테마파크.jpeg'
 #Wordcloud Image 2
 image2 = './img/수정/인천/월미테마파크 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/인천/월미테마파크.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab4, name, googlelink, intro, image1, image2, image3)
+tabs(tab4, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(송월동동화마을)-------------------------
 #관광지명
@@ -168,16 +240,23 @@ googlelink = 'https://www.google.com/maps/place/%EC%86%A1%EC%9B%94%EB%8F%99+%EB%
 #관광지 소개 글
 intro = '''Songwol-dong was named for its view of the moon between the pine forest. The opening of Incheon Port in 1883 led to the start of many foreigners coming into the area for settlement, and it turned into a rich village. However, young people gradually moved out, leaving the village in a state of stagnation. As such, a renovation project was brought about to improve the development of the village by decorating with murals and sculptures of classic fairy tales.'''
 #추천 장소 4곳
-rec_place = [dict['인천차이나타운'][0], dict['월미도'][0], dict['월미테마파크'][0], dict['영종도'][0]]
+rec_place = [dict1['인천차이나타운'][0], dict1['월미도'][0], dict1['월미테마파크'][0], dict1['영종도'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['인천차이나타운'][1], dict['월미도'][1], dict['월미테마파크'][1], dict['영종도'][1]]
+rec_place_img = [dict1['인천차이나타운'][1], dict1['월미도'][1], dict1['월미테마파크'][1], dict1['영종도'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['인천차이나타운'][2], dict['월미도'][2], dict['월미테마파크'][2], dict['영종도'][2]]
+rec_caption = [dict1['인천차이나타운'][2], dict1['월미도'][2], dict1['월미테마파크'][2], dict1['영종도'][2]]
 # 관광지 Image 1
 image1 = './img/수정/송월동동화마을.jpeg'
 #Wordcloud Image 2
 image2 = './img/수정/인천/송월동동화마을 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/인천/송월동동화마을.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab5, name, googlelink, intro, image1, image2, image3)
+tabs(tab5, name, googlelink, intro, image1, image2, data, pos, neg, image3)

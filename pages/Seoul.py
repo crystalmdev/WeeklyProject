@@ -1,11 +1,15 @@
 import streamlit as st
+import pandas as pd
 from PIL import Image
-import numpy as np # TEST
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+
 st.header('Seoul')
 list = ['Seoul Botanic Park', 'Lotte World', 'Gyeongbokgung Palace', 'Seokchonhosu Lake', "Seoul Children's Grand Park"]
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
-def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
+def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3):
     with (tabnum):
         st.subheader(name)
         # st.markdown('**Train: 3hrs 24 min / Bus: 5hrs 2 min** (departure from seoul)')
@@ -53,13 +57,52 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, image3):
             st.image(Image.open(image2),
                      use_column_width=True)
         with col2:
-            st.markdown('**스타차트로 변경**')
-            st.text('(based on Korean blog reviews)')
-            st.image(Image.open(image3),
-                     use_column_width=True)
+            st.markdown('**Most Visited Month**')
+            st.text('(based on Korean reviews)')
+            data1 = pd.read_csv(data)
+            data1[['Year', 'Month', 'Day']] = data1['날짜'].str.rstrip('.').str.split('.', expand=True)
+            all_months = data1['Month'].unique()
+            month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            filtered_month_list = [month_list[int(month) - 1] for month in all_months]
+            popular_month = pd.DataFrame(data1['Month'].value_counts().sort_index())
+            popular_month['month'] = filtered_month_list
+            fig = px.pie(popular_month, values='count',
+                         names='month', hover_data=['count'],
+                         labels={'count': 'Count'},
+                         width=400, height=400, hole=0.3)
+            fig.update_traces(textinfo='percent+label', textfont_size=14, textposition='inside')
+            fig.update_layout(showlegend=False)
+            st.plotly_chart(fig)
+
+        st.divider()
+
+        st.markdown('**Positive/Negative Ratio**')
+        st.text('(based on Korean reviews)')
+        data = {'Category': ['Total'],
+                'Positive': [pos],
+                'Negative': [neg]}
+        df = pd.DataFrame(data)
+
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            y=df['Category'], x=df['Positive'],
+            name='Positive', orientation='h',
+            marker=dict(color='green')
+        ))
+        fig.add_trace(go.Bar(
+            y=df['Category'], x=df['Negative'],
+            name='Negative', orientation='h',
+            marker=dict(color='red')
+        ))
+
+        fig.update_layout(xaxis_title='Category', yaxis_title='Value')
+        st.plotly_chart(fig)
+
+        with st.expander('Bigram NetworkX Graph'):
+            st.image(Image.open(image3), use_column_width=True)
 
 # -------------------------(dict)-----------------------------
-dict = {
+dict1 = {
         '경복궁': ['Gyeongbokgung', './img/수정/경복궁.webp', 'Gyeongbokgung Palace was built as the official palace of the Joseon dynasty by Yi Seong-gye, who becomes King Taejo and the founder of the new regime. Gyeongbokgung Palace is arguably the most beautiful and is the largest of all five palaces.'],
         '서울어린이대공원' : ["Seoul Children's Grand Park", './img/수정/서울어린이대공원.jpeg', 'Opened in May 1973, Seoul Children’s Grand Park is a theme park situated among green forests and fields with a total area of 56,552㎡. It contains a zoo, arboretum, amusement park, and performance venues.'],
         '청계천' : ['Cheonggyecheon Stream', './img/수정/청계천.jpeg', 'Cheonggyecheon Stream is accessible from the square through stairs on the left and Cheonggye Trail on the right.  spectacular sight is created by three-color lights illuminating the fountains and a two-tiered waterfall coming down from a height of four meters.'],
@@ -82,19 +125,26 @@ googlelink = 'https://www.google.com/maps/place/%EC%84%9C%EC%9A%B8%EC%8B%9D%EB%A
 #관광지 소개 글
 intro = '''The Seoul Botanical Garden was created in Magok, the last remaining development site in Seoul, to introduce native plants and horticulture of 12 different cities from around the world and raise ecological awareness in the city. Seoul Botanic Park integrates a botanical garden and a public park, and the area is the size of 70 soccer fields. It serves as a bridgehead and lifelong education institution with the aim of spreading urban garden culture while staying true to its original role as a plant research conservation institution through expanding endangered wild plant habitats, researching the proliferation of species, and developing varieties. The botanical garden is divided into four spaces: Open Forest, Themed Garden, Lake Garden, and Wetland Garden. The main highlight is the Themed Garden that comprises the Botanic Center, Mogok Cultural Hall, and an outdoor themed garden. '''
 #추천 장소 4곳
-rec_place = [dict['경복궁'][0], dict['서울어린이대공원'][0], dict['청계천'][0], dict['남산서울타워'][0]]
+rec_place = [dict1['경복궁'][0], dict1['서울어린이대공원'][0], dict1['청계천'][0], dict1['남산서울타워'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['경복궁'][1], dict['서울어린이대공원'][1], dict['청계천'][1], dict['남산서울타워'][1]]
+rec_place_img = [dict1['경복궁'][1], dict1['서울어린이대공원'][1], dict1['청계천'][1], dict1['남산서울타워'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['경복궁'][2], dict['서울어린이대공원'][2], dict['청계천'][2], dict['남산서울타워'][2]]
+rec_caption = [dict1['경복궁'][2], dict1['서울어린이대공원'][2], dict1['청계천'][2], dict1['남산서울타워'][2]]
 # 관광지 Image
 image1 = './img/수정/서울식물원.jpeg'
 #Wordcloud
 image2 = './img/수정/서울/서울식물원 워드클라우드.png'
-#그래프
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/서울/서울식물원.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab1, name, googlelink, intro, image1, image2, image3)
+tabs(tab1, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(롯데월드 어드밴처)-------------------------
 #관광지명
@@ -104,19 +154,26 @@ googlelink = 'https://www.google.com/maps/place/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%9
 #관광지 소개 글
 intro = '''Operated by Lotte Group, Lotte World is the perfect spot for entertainment and sightseeing for Koreans and international tourists alike. The theme park is divided into the indoor Lotte World Adventure, and the outdoor lakeside Magic Island, with additional amenities including a shopping mall, folk museum, ice rink, hotel, and more. Lotte World Adventure is the world's largest indoor amusement park, complete with top-of-the-line rides, fantastic parades and performances, and food from around the world. The Folk Museum displays miniature models of Korea throughout 5,000 years in history. Lotte World Garden Stage presents various themed musicals to match each season and Lotte World Star Avenue is the perfect place to experience Korean stars and the entertainment world.'''
 #추천 장소 4곳
-rec_place = [dict['석촌호수'][0], dict['서울스카이'][0], dict['서울어린이대공원'][0], dict['경복궁'][0]]
+rec_place = [dict1['석촌호수'][0], dict1['서울스카이'][0], dict1['서울어린이대공원'][0], dict1['경복궁'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['석촌호수'][1], dict['서울스카이'][1], dict['서울어린이대공원'][1], dict['경복궁'][1]]
+rec_place_img = [dict1['석촌호수'][1], dict1['서울스카이'][1], dict1['서울어린이대공원'][1], dict1['경복궁'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['석촌호수'][2], dict['서울스카이'][2], dict['서울어린이대공원'][2], dict['경복궁'][2]]
+rec_caption = [dict1['석촌호수'][2], dict1['서울스카이'][2], dict1['서울어린이대공원'][2], dict1['경복궁'][2]]
 # 관광지 Image 1
 image1 = './img/수정/롯데월드.png'
 #Wordcloud Image 2
 image2 = './img/수정/서울/롯데월드 어드벤처 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/서울/롯데월드 어드벤처.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab2, name, googlelink, intro, image1, image2, image3)
+tabs(tab2, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(경복궁)-------------------------
 #관광지명
@@ -126,19 +183,26 @@ googlelink = 'https://www.google.com/maps/place/%EA%B2%BD%EB%B3%B5%EA%B6%81/data
 #관광지 소개 글
 intro = '''Gyeongbokgung Palace was built as the official palace of the Joseon dynasty by Yi Seong-gye, who becomes King Taejo and the founder of the new regime. Gyeongbokgung Palace is commonly referred to as the Northern Palace because its location in the north of Changdeokgung Palace in the east and Gyeonghuigung Palace in the west. Gyeongbokgung Palace is arguably the most beautiful and is the largest of all five palaces. Many Joseon kings were crowned here, including the 2nd King Jeongjong, 4th King Sejong, 6th King Danjong, 7th King Sejo, 9th King Seongjong, 11th King Jungjong, and the 13th King Myeongjong. The premises were once destroyed by fire during the Imjin War (1592-1598). However, all of the palace buildings were later restored under the leadership of Heungseondaewongun during the reign of King Gojong. The assassination of Empress Myeongseong, however, resulted in Gyeongbokgung Palace losing its function as a royal palace, eventually witnessing the downfall of the Joseon dynasty. Gyeongbokgung Palace retains the original Gyeonghoeru Pavilion, a prime example of Joseon architecture, and the Hyangwonjeong Pavilion and pond. The sculptures in the Geunjeongjeon Hall exemplify Joseon-era sculpture techniques. The west side of the area outside Heungnyemun Gate is occupied by the National Palace Museum of Korea, while the eastern side of Hyangwonjeong Pavilion within the Gyeongbokgung Palace is occupied by the National Folk Museum of Korea.'''
 #추천 장소 4곳
-rec_place = [dict['서촌한옥마을'][0], dict['덕수궁'][0], dict['광화문'][0], dict['창덕궁'][0]]
+rec_place = [dict1['서촌한옥마을'][0], dict1['덕수궁'][0], dict1['광화문'][0], dict1['창덕궁'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['서촌한옥마을'][1], dict['덕수궁'][1], dict['광화문'][1], dict['창덕궁'][1]]
+rec_place_img = [dict1['서촌한옥마을'][1], dict1['덕수궁'][1], dict1['광화문'][1], dict1['창덕궁'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['서촌한옥마을'][2], dict['덕수궁'][2], dict['광화문'][2], dict['창덕궁'][2]]
+rec_caption = [dict1['서촌한옥마을'][2], dict1['덕수궁'][2], dict1['광화문'][2], dict1['창덕궁'][2]]
 # 관광지 Image 1
 image1 = './img/수정/경복궁.webp'
 #Wordcloud Image 2
 image2 = './img/수정/서울/경복궁 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/서울/경복궁.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab3, name, googlelink, intro, image1, image2, image3)
+tabs(tab3, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(석촌호수)-------------------------
 #관광지명
@@ -148,19 +212,26 @@ googlelink = 'https://www.google.com/maps/place/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%8
 #관광지 소개 글
 intro = '''Songpa Naru Park, also commonly referred to as Seokchonhosu Lake, is a citizen park in Seoul with a jogging course and walking trails. It has two lakes with Songpa-daero Boulevard running in between. Originally, a branch of the Hangang River ran through the site, forming one large lake, but the lake was divided into two with the construction of Songpa-daero Boulevard. The total size of the two lakes is 217,850 ㎡, and they hold about 737 tons of water. The depth of the lakes is 4-5 meters.'''
 #추천 장소 4곳
-rec_place = [dict['송리단길'][0], dict['롯데월드 어드벤처'][0], dict['서울스카이'][0], dict['광화문'][0]]
+rec_place = [dict1['송리단길'][0], dict1['롯데월드 어드벤처'][0], dict1['서울스카이'][0], dict1['광화문'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['송리단길'][1], dict['롯데월드 어드벤처'][1], dict['서울스카이'][1], dict['광화문'][1]]
+rec_place_img = [dict1['송리단길'][1], dict1['롯데월드 어드벤처'][1], dict1['서울스카이'][1], dict1['광화문'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['송리단길'][2], dict['롯데월드 어드벤처'][2], dict['서울스카이'][2], dict['광화문'][2]]
+rec_caption = [dict1['송리단길'][2], dict1['롯데월드 어드벤처'][2], dict1['서울스카이'][2], dict1['광화문'][2]]
 # 관광지 Image 1
 image1 = './img/수정/석촌호수.jpeg'
 #Wordcloud Image 2
 image2 = './img/수정/서울/석촌호수 서호 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/서울/석촌호수 서호.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab4, name, googlelink, intro, image1, image2, image3)
+tabs(tab4, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
 # --------------------------(서울어린이대공원)-------------------------
 #관광지명
@@ -170,16 +241,23 @@ googlelink = 'https://www.google.com/maps/place/%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%8
 #관광지 소개 글
 intro = '''Opened in May 1973, Seoul Children’s Grand Park is a theme park situated among green forests and fields with a total area of 56,552㎡. It contains a zoo, arboretum, amusement park, and performance venues. Seoul Children’s Grand Park has been a beloved part of Seoul, a paradise for children and a living venue for education. For grown-ups, it functions as an area of refuge and culture within the city. The Grand Park offers facilities that everyone in the family can enjoy, so everyone can find their own fun in the Grand Park.'''
 #추천 장소 4곳
-rec_place = [dict['남산서울타워'][0], dict['우리유황온천'][0], dict['청계천'][0], dict['경복궁'][0]]
+rec_place = [dict1['남산서울타워'][0], dict1['우리유황온천'][0], dict1['청계천'][0], dict1['경복궁'][0]]
 #추천 장소 이미지 경로 4개
-rec_place_img = [dict['남산서울타워'][1], dict['우리유황온천'][1], dict['청계천'][1], dict['경복궁'][1]]
+rec_place_img = [dict1['남산서울타워'][1], dict1['우리유황온천'][1], dict1['청계천'][1], dict1['경복궁'][1]]
 #추천 장소 설명 4개
-rec_caption = [dict['남산서울타워'][2], dict['우리유황온천'][2], dict['청계천'][2], dict['경복궁'][2]]
+rec_caption = [dict1['남산서울타워'][2], dict1['우리유황온천'][2], dict1['청계천'][2], dict1['경복궁'][2]]
 # 관광지 Image 1
 image1 = './img/수정/서울어린이대공원.jpeg'
 #Wordcloud Image 2
 image2 = './img/수정/서울/서울어린이대공원 워드클라우드.png'
-#그래프 Image 3
-image3 = './img/예시/graph.png'
+#파이차트 경로
+data = 'data/서울/서울어린이대공원.csv'
+#Positive 개수
+pos = 200
+#Negative 개수
+neg = 100
+#Bigram NetworkX Graph 이미지 첨부
+image3 = './img/수정/노드.png'
+
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
-tabs(tab5, name, googlelink, intro, image1, image2, image3)
+tabs(tab5, name, googlelink, intro, image1, image2, data, pos, neg, image3)

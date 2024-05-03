@@ -4,6 +4,7 @@ import folium
 from folium.plugins import MarkerCluster
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import MiniMap
+import streamlit.components.v1 as components
 
 
 df = pd.read_csv('data/관광지_위경도(최종3).csv')
@@ -13,7 +14,6 @@ st.set_page_config(
     page_icon='🗺️',
     layout='wide',
     initial_sidebar_state='auto')
-
 
 locs = {
     'Korea' : [36.429, 127.977],
@@ -35,13 +35,48 @@ locs = {
     'Jeonnam' : [34.819400, 126.893113],
     'jeju' : [33.364805, 126.542671]}
 
+kor = { 'Seoul' : ['서울', 11], 'Incheon' : ['인천', 11],
+    'Gwangju' : ['광주', 11], 'Daegu' : ['대구', 11],
+    'Ulsan' : ['울산', 11], 'Daejeon' : ['대전', 11],
+    'Busan' : ['부산', 11], 'Gyeonggi-do' : ['경기도', 9],
+    'Sejong': ['세종', 11], 'Gangwon' : ['강원', 9],
+    'Chungnam' : ['충남', 9], 'Chungbuk' : ['충북', 9],
+    'Gyeongbuk' : ['경북', 9], 'Gyeongnam' : ['경남', 9],
+    'jeonbuk' : ['전북', 9], 'Jeonnam' : ['전남', 9], 'jeju' : ['제주', 9]}
+
+dests = {
+        'Seoul': ['Seoul Botanic Park', 'Lotte World', 'Gyeongbokgung Palace', 'Seokchonhosu Lake', "Seoul Children's Grand Park"],
+         'Sejong': ['Sejong National Arboretum', 'Dodori Park', 'Gobok Reservoir', 'Jochiwon Theme Street', 'Sejong Attige'],
+        'Busan' : ['Gwangalli beach', 'Lotte World Busan', 'Haeundae Beach', 'Dadaepo Beach', 'Haeundae Street food alley'],
+        'Incheon' : ['Wolmido Island', 'Incheon Chinatown', 'Incheon Grand Park', 'Wolmi Theme Park', 'Songwol-dong Fairy Tale Village ']
+}
+
 st.title('Korea Travel Guide 🌎')
 # st.header('Korea Map 🗺️')
-selected_city = st.selectbox('Select the city you plan to travel',
-               options = list(locs.keys()),
-                index = 0)
 
+st.text('사이트 소개글 넣기')
 
+col1, col2= st.columns(2)
+
+with col1:
+    selected_city = st.selectbox(
+        "Select the city/state you plan to travel",
+        list(locs.keys()))
+
+with col2:
+    if selected_city == 'Korea':
+        selected_dest = st.selectbox(
+            "Select the destination you plan to travel",
+            [item for sublist in dests.values() for item in sublist])
+    elif selected_city in dests:
+        selected_dest = st.selectbox(
+            "Select the destination you plan to travel",
+            dests[selected_city])
+
+if selected_dest in [item for sublist in dests.values() for item in sublist]:
+        for key, value_list in dests.items():
+            if selected_dest in value_list:
+                 st.page_link(f'pages/{key}.py', label=f'📍click for more info about :red[**{selected_dest}**]')
 
 df_loc = pd.DataFrame(locs).T
 df_loc.columns = ['lat', 'lon']
@@ -62,251 +97,13 @@ if selected_city:
                           icon=folium.Icon(icon='info-sign')
                           ).add_to(marker_cluster)
 
-    elif selected_city == 'Seoul':
-        df = df[df['지자체'].str.contains('서울')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
+    elif selected_city in locs:
+        df = df[df['지자체'].str.contains(kor[selected_city][0])]
+        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=kor[selected_city][1])
         my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
                             tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
                             attr='Stadia Maps'
                             )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Incheon':
-        df = df[df['지자체'].str.contains('인천')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Gwangju':
-        df = df[df['지자체'].str.contains('광주')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Daegu':
-        df = df[df['지자체'].str.contains('대구')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Ulsan':
-        df = df[df['지자체'].str.contains('울산')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Daejeon':
-        df = df[df['지자체'].str.contains('대전')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Busan':
-        df = df[df['지자체'].str.contains('부산')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Gyeonggi-do':
-        df = df[df['지자체'].str.contains('경기')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=9)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Sejong':
-        df = df[df['지자체'].str.contains('세종')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=11)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Gangwon':
-        df = df[df['지자체'].str.contains('강원')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Chungnam':
-        df = df[df['지자체'].str.contains('충남')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Chungbuk':
-        df = df[df['지자체'].str.contains('충북')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Gyeongbuk':
-        df = df[df['지자체'].str.contains('경북')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Gyeongnam':
-        df = df[df['지자체'].str.contains('경남')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'jeonbuk':
-        df = df[df['지자체'].str.contains('전북')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'Jeonnam':
-        df = df[df['지자체'].str.contains('전남')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    elif selected_city == 'jeju':
-        df = df[df['지자체'].str.contains('제주')]
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=8)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-        for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            folium.Marker([lat2, lon2],
-                          popup=name,
-                          tooltip=name,
-                          icon=folium.Icon(icon='info-sign')
-                          ).add_to(my_map)
-
-    else:
-        zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=20, value=10)
-        my_map = folium.Map(location=df_loc.loc[selected_city], zoom_start=zoom_level,
-                            tiles='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png',
-                            attr='Stadia Maps'
-                            )
-
         for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
             folium.Marker([lat2, lon2],
                           popup=name,
@@ -317,12 +114,4 @@ if selected_city:
     minimap = MiniMap(width=100, height=100)
     minimap.add_to(my_map)
 
-    # st_folium(my_map)
-    folium_static(my_map, width=600, height=400)
-
-# lotte = [35.1961130003038, 129.213344761055]
-
-# st.map()
-
-
-
+    folium_static(my_map, width=1000, height=800)

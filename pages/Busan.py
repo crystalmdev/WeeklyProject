@@ -72,6 +72,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
             fig.update_traces(textinfo='percent+label', textfont_size=14, textposition='inside')
             fig.update_layout(showlegend=False)
             st.plotly_chart(fig)
+            st.text(f'Most visited Months : September, December')
 
         st.divider()
 
