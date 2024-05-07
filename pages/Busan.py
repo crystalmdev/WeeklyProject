@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from PIL import Image
+# from PIL import Image
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
@@ -33,7 +33,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
 
         with col1:
             st.markdown('**Image**')
-            st.image(Image.open(image1),
+            st.image(image1,
                      use_column_width=True)
 
         with col2:
@@ -42,7 +42,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
             row2 = st.columns(2)
             for i, col in enumerate(row1 + row2):
                 tile = col.expander(rec_place[i])
-                tile.image(Image.open(rec_place_img[i]),
+                tile.image(rec_place_img[i],
                      caption=rec_caption[i],
                      use_column_width=True)
 
@@ -53,7 +53,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
         with col1:
             st.markdown('💡**Highlights of the Destination**')
             st.text('(Top Keywords based on Korean blog)')
-            st.image(Image.open(image2),
+            st.image(image2,
                      use_column_width=True)
         with col2:
             data1 = pd.read_csv(data)
@@ -101,7 +101,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
         st.subheader(f'**:green[{positive_display}]** **:red[{negative_display}]**')
 
         with st.expander('Review text positive/negative word distribution (Bigram NetworkX Graph)'):
-            st.image(Image.open(image3), use_column_width=True)
+            st.image(image3, use_column_width=True)
 
 # --------------------------(광안리해수욕장)-------------------------
 
