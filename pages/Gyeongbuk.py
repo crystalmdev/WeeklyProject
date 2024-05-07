@@ -9,8 +9,7 @@ st.header('Gyeongbuk')
 list = ['Woljeonggyo Bridge', 'Hwangridan Street','Daereungwon', 'Cheomseongdae', 'Yeongildae Beach']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
-
-def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt, image3):
+def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3):
     with (tabnum):
         st.subheader(name)
         # st.markdown('**Train: 3hrs 24 min / Bus: 5hrs 2 min** (departure from seoul)')
@@ -35,7 +34,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
 
         with col1:
             st.markdown('**Image**')
-            st.image(Image.open(image1),
+            st.image(image1,
                      use_column_width=True)
 
         with col2:
@@ -44,7 +43,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
             row2 = st.columns(2)
             for i, col in enumerate(row1 + row2):
                 tile = col.expander(rec_place[i])
-                tile.image(Image.open(rec_place_img[i]),
+                tile.image(rec_place_img[i],
                      caption=rec_caption[i],
                      use_column_width=True)
 
@@ -55,17 +54,17 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
         with col1:
             st.markdown('💡**Highlights of the Destination**')
             st.text('(Top Keywords based on Korean blog)')
-            st.image(Image.open(image2),
+            st.image(image2,
                      use_column_width=True)
         with col2:
-
             data1 = pd.read_csv(data)
             data1[['Year', 'Month', 'Day']] = data1['날짜'].str.rstrip('.').str.split('.', expand=True)
             # 전체 데이터에서 모든 월을 추출
             all_months = data1['Month'].unique()
 
             # 'month' 리스트 생성
-            month_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            month_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                          'October', 'November', 'December']
 
             # 월 이름 리스트를 전체 월 중 있는 월만 남기도록 필터링
             filtered_month_list = [month_list[int(month) - 1] for month in all_months]
@@ -83,20 +82,16 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
                          labels={'count': 'Count'},
                          width=400, height=400, hole=0.3)
 
-
-
             fig.update_traces(textinfo='percent+label', textfont_size=14, textposition='inside')
             fig.update_layout(showlegend=False)
             st.plotly_chart(fig)
 
-
-
         st.divider()
 
-        total_count = pos_cnt + neg_cnt
+        total_count = pos + neg
         st.markdown(f'🔍The reviews from korean visitors are generally like this (**{total_count} reviews**)')
-        positive_ratio = (pos_cnt / total_count) * 100
-        negative_ratio = (neg_cnt / total_count) * 100
+        positive_ratio = (pos / total_count) * 100
+        negative_ratio = (neg / total_count) * 100
 
         positive_icon = '😊'  # 긍정을 나타내는 이모티콘
         negative_icon = '😞'  # 부정을 나타내는 이모티콘
@@ -106,9 +101,8 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
 
         st.subheader(f'**:green[{positive_display}]** **:red[{negative_display}]**')
 
-
         with st.expander('Review text positive/negative word distribution (Bigram NetworkX Graph)'):
-            st.image(Image.open(image3), use_column_width=True)
+            st.image(image3, use_column_width=True)
 
 # --------------------------(월정교)-------------------------
 

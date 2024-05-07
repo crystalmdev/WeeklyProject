@@ -8,7 +8,7 @@ st.header('Daegu')
 list = ['Spark Land:ferris_wheel:', 'Kim Kwangseok Road🎸', 'E-World:roller_coaster:', '83 Tower:tokyo_tower:', 'Elybaden:swimmer:']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
-def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt, image3):
+def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3):
     with (tabnum):
         st.subheader(name)
         # st.markdown('**Train: 3hrs 24 min / Bus: 5hrs 2 min** (departure from seoul)')
@@ -25,16 +25,15 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
                          label='bus', icon='🚌')
 
         # st.markdown('**Introduction**')
-        with st.container(height=270):
+        with st.container(height=200):
             st.markdown(intro)
-
         st.divider()
 
         col1, col2 = st.columns([1,1])
 
         with col1:
             st.markdown('**Image**')
-            st.image(Image.open(image1),
+            st.image(image1,
                      use_column_width=True)
 
         with col2:
@@ -43,7 +42,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
             row2 = st.columns(2)
             for i, col in enumerate(row1 + row2):
                 tile = col.expander(rec_place[i])
-                tile.image(Image.open(rec_place_img[i]),
+                tile.image(rec_place_img[i],
                      caption=rec_caption[i],
                      use_column_width=True)
 
@@ -54,7 +53,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
         with col1:
             st.markdown('💡**Highlights of the Destination**')
             st.text('(Top Keywords based on Korean blog)')
-            st.image(Image.open(image2),
+            st.image(image2,
                      use_column_width=True)
         with col2:
             data1 = pd.read_csv(data)
@@ -88,10 +87,10 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
 
         st.divider()
 
-        total_count = pos_cnt + neg_cnt
+        total_count = pos + neg
         st.markdown(f'🔍The reviews from korean visitors are generally like this (**{total_count} reviews**)')
-        positive_ratio = (pos_cnt / total_count) * 100
-        negative_ratio = (neg_cnt / total_count) * 100
+        positive_ratio = (pos / total_count) * 100
+        negative_ratio = (neg / total_count) * 100
 
         positive_icon = '😊'  # 긍정을 나타내는 이모티콘
         negative_icon = '😞'  # 부정을 나타내는 이모티콘
@@ -102,8 +101,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos_cnt, neg_cnt
         st.subheader(f'**:green[{positive_display}]** **:red[{negative_display}]**')
 
         with st.expander('Review text positive/negative word distribution (Bigram NetworkX Graph)'):
-            st.image(Image.open(image3), use_column_width=True)
-
+            st.image(image3, use_column_width=True)
 
 # 스파크랜드--------------------------------------------------------------------------------------
 
