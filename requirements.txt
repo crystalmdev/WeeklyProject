@@ -20,5 +20,4 @@ jupyterlab
 streamlit_folium
 Pillow
 plotly.express
-streamlit.components.v1
 folium.plugins
