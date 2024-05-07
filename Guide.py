@@ -30,7 +30,7 @@ style = """
 """
 
 # 타이틀 및 소개
-st.title("🌏 Welcome to the Korea Travel Dashboard Guide")
+st.title("🌏 How to use 'Korea Travel Guide' ")
 st.image("https://images.studentuniverse.com/new/suwebui/photos/marketing-us/landing-pages/header/header-SEL.jpg",
          caption="Explore Korea")
 st.markdown("""

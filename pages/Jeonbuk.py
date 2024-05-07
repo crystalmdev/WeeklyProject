@@ -4,7 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-st.header('Jeollabuk-do')
+st.header('Jeonbuk')
 list = ['Jeonju Zoo',
         'Gyeonggijeon',
         'Jeonju Hanok Village',

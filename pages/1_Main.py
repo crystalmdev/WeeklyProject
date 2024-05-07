@@ -18,22 +18,22 @@ st.set_page_config(
 locs = {
     'Korea' : [36.429, 127.977],
     'Seoul' : [37.540705, 126.956764],
+    'Busan' : [35.198362, 129.053922],
+    'Gyeonggi-do' : [37.567167, 127.190292],
     'Incheon' : [37.469221, 126.573234],
-    'Gwangju' : [35.126033, 126.831302],
     'Daegu' : [35.798838, 128.583052],
     'Ulsan' : [35.519301, 129.239078],
     'Daejeon' : [36.321655, 127.378953],
-    'Busan' : [35.198362, 129.053922],
-    'Gyeonggi-do' : [37.567167, 127.190292],
     'Sejong': [36.5040736, 127.2494855],
     'Gangwon' : [37.555837, 128.209315],
-    'Chungnam' : [36.557229, 126.779757],
     'Chungbuk' : [36.628503, 127.929344],
+    'Chungnam' : [36.557229, 126.779757],
     'Gyeongbuk' : [36.248647, 128.664734],
     'Gyeongnam' : [35.259787, 128.664734],
-    'jeonbuk' : [35.716705, 127.144185],
+    'Gwangju' : [35.126033, 126.831302],
+    'Jeonbuk' : [35.716705, 127.144185],
     'Jeonnam' : [34.819400, 126.893113],
-    'jeju' : [33.364805, 126.542671]}
+    'Jeju' : [33.364805, 126.542671]}
 
 kor = { 'Seoul' : ['서울', 11], 'Incheon' : ['인천', 11],
     'Gwangju' : ['광주', 11], 'Daegu' : ['대구', 11],
@@ -42,13 +42,26 @@ kor = { 'Seoul' : ['서울', 11], 'Incheon' : ['인천', 11],
     'Sejong': ['세종', 11], 'Gangwon' : ['강원', 9],
     'Chungnam' : ['충남', 9], 'Chungbuk' : ['충북', 9],
     'Gyeongbuk' : ['경북', 9], 'Gyeongnam' : ['경남', 9],
-    'jeonbuk' : ['전북', 9], 'Jeonnam' : ['전남', 9], 'jeju' : ['제주', 9]}
+    'Jeonbuk' : ['전북', 9], 'Jeonnam' : ['전남', 9], 'Jeju' : ['제주', 9]}
 
 dests = {
         'Seoul': ['Seoul Botanic Park', 'Lotte World', 'Gyeongbokgung Palace', 'Seokchonhosu Lake', "Seoul Children's Grand Park"],
          'Sejong': ['Sejong National Arboretum', 'Dodori Park', 'Gobok Reservoir', 'Jochiwon Theme Street', 'Sejong Attige'],
         'Busan' : ['Gwangalli beach', 'Lotte World Busan', 'Haeundae Beach', 'Dadaepo Beach', 'Haeundae Street food alley'],
-        'Incheon' : ['Wolmido Island', 'Incheon Chinatown', 'Incheon Grand Park', 'Wolmi Theme Park', 'Songwol-dong Fairy Tale Village ']
+        'Incheon' : ['Wolmido Island', 'Incheon Chinatown', 'Incheon Grand Park', 'Wolmi Theme Park', 'Songwol-dong Fairy Tale Village '],
+         'Gyeonggi-do' : ['Everland', 'Hwadam Forest', 'Seoul Land', 'Nizimori Studio','Korean Folk Village'],
+        'Daegu' : ['Spark Land', 'Kim Kwangseok Road', 'E-World', '83 Tower', 'Elybaden'],
+        'Ulsan' : ['Ganwoljae', 'Wow Zoo', 'Yeongnam Alps', 'Taehwagang Donggulpia', 'Amethyst Cavern Park'],
+         'Daejeon' : ['Sangso-dong Forest Park', 'O-World', 'Jangtaesan Recreational Forest', 'Daejeon National Soopchewon', 'Hanbat Arboretum'],
+         'Gangwon' : ['Anmok Beach', 'Nami Island', 'Ojukheon House', 'Sokcho Eye', 'Haslla Art World'],
+        'Chungbuk' : ['Cheongnamdae','Forest Resom Have Nine Spa','Uirimji','Chungju Lavarland','Aquatic Plant Study Center'],
+         'Chungnam' : ['Gongju Hanok Village','Gongsanseong Fortress','House of Yu Gibang','Cheongsan Arboretum','Onyang Hot Spring Land'],
+         'Gyeongbuk' : ['Woljeonggyo Bridge', 'Hwangridan Street','Daereungwon', 'Cheomseongdae', 'Yeongildae Beach'],
+        'Gyeongnam' : ['Geochang Iris Garden', 'Hapcheon Image Theme Park', 'SpaTheSpace', 'Dongpirang Village', 'Skyline Luge Tongyeong'],
+         'Gwangju' : ['Uncheon Reservoir', 'Solomon Law Park', 'Mudeungsan Lift Monorail', 'Gwangju Metropolitan Arboretum', 'Hello Animal'],
+         'Jeonbuk' : ['Jeonju Zoo','Gyeonggijeon', 'Jeonju Hanok Village', 'Gyeongam-dong Railway Village','Jeonju Arboretum of Korea Expressway Corporation'],
+         'Jeonnam' : ['Mokpo Marine Cable Car North Port Platform', 'Suncheon Bay National Garden', 'Yi Sun-sin Square','Suncheon Bay Wetland', 'Gwanbangjerim Forest, Damyang'],
+         'Jeju' : ['Snoopy Garden', 'Hamdeok Beach', 'Camellia Hill', 'Seongsan Sunrise Peak', 'Camellia Forest']
 }
 
 st.title('Korea Travel Guide 🌎')

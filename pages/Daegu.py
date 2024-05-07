@@ -4,7 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-st.header('Daegu:apple:')
+st.header('Daegu')
 list = ['Spark Land:ferris_wheel:', 'Kim Kwangseok Road🎸', 'E-World:roller_coaster:', '83 Tower:tokyo_tower:', 'Elybaden:swimmer:']
 tab1, tab2, tab3, tab4, tab5 = st.tabs(list)
 
