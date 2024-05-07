@@ -114,19 +114,19 @@ intro = '''Located to the west of Haeundae Beach, Gwangalli Beach is 1.4 kilomet
 #추천 장소 4곳
 rec_place = ['Songjeong Beach', 'Haeundae Beach', 'Songdo Beach', 'Dalmaji Road']
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/수정/송정해수욕장.jpeg',
-                 './img/수정/해운대해수욕장.jpeg',
-                 './img/수정/송도해수욕장.webp',
-                 './img/수정/해운대달맞이길.png']
+rec_place_img = ['img/수정/송정해수욕장.jpeg',
+                 'img/수정/해운대해수욕장.jpeg',
+                 'img/수정/송도해수욕장.webp',
+                 'img/수정/해운대달맞이길.png']
 #추천 장소 설명 4개
 rec_caption = ['Songjeong Beach is ideal for families with young children because of its shallow waters. The beach is very popular as a photography venue for pre-wedding photoshoots.',
                'Haeundae Beach is the most famous beach in Busan. The white sand beach creates a beautiful coastline before a shallow bay, making it perfect for swimming.',
                'Songdo Beach was one of the first beaches to open in Korea in 1913. The area has a variety of accommodation and dining options, and is well equipped with convenience facilities such as an overpass, promenade, boat yard etc.',
                'Dalmaji Road refers to the pass that connects Haeundae Beach with Songjeong Beach over Wausan Mountain. It is an 8 km-long coastal road lined with cherry and pine trees, offering a beautiful coast view and a perfect place for seaside drives.']
 # 관광지 Image
-image1 = './img/수정/광안리해수욕장.jpeg'
+image1 = 'img/수정/광안리해수욕장.jpeg'
 #Wordcloud
-image2 = './img/수정/부산/광안리해수욕장 워드클라우드.png'
+image2 = 'img/수정/부산/광안리해수욕장 워드클라우드.png'
 #파이차트 경로
 data = 'data/부산/광안리해수욕장.csv'
 #Positive 개수
@@ -134,7 +134,7 @@ pos = 151
 #Negative 개수
 neg = 65
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/부산/광안리해수욕장그래프.png'
+image3 = 'img/수정/부산/광안리해수욕장그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab1, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -149,19 +149,19 @@ intro = '''Lotte World Adventure opened in Busan, where visitors can experience 
 #추천 장소 4곳
 rec_place = ['Songjeong Beach', 'Gamcheon Culture Village', 'Haeundae Beach', 'Busan Tower']
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/수정/송정해수욕장.jpeg',
-                 './img/수정/감천문화마을.jpeg',
-                 './img/수정/해운대해수욕장.jpeg',
-                 './img/수정/부산타워.webp']
+rec_place_img = ['img/수정/송정해수욕장.jpeg',
+                 'img/수정/감천문화마을.jpeg',
+                 'img/수정/해운대해수욕장.jpeg',
+                 'img/수정/부산타워.webp']
 #추천 장소 설명 4개
 rec_caption = [rec_caption[0], #송정해수욕장
                'Gamcheon Culture Villiage was formed by refugees of the Korean war who built their houses in staircase-fashion on the foothills of a coastal mountain. The many alleys in this community are vibrantly decorated with murals and sculptures created by the residents.',
                 rec_caption[1], #해운대해수욕장
                "Busan Tower, standing at 120 meters tall, is an iconic observation tower situated in Busan's Yongdusan Park. This tower offers visitors panoramic views of Busan Port and Yeongdo Island."]
 # 관광지 Image
-image1 = './img/수정/롯데월드부산.jpg'
+image1 = 'img/수정/롯데월드부산.jpg'
 #Wordcloud
-image2 = './img/수정/부산/롯데월드 어드벤처 부산 워드클라우드.png'
+image2 = 'img/수정/부산/롯데월드 어드벤처 부산 워드클라우드.png'
 #파이차트 경로
 data = 'data/부산/롯데월드 어드벤처 부산.csv'
 #Positive 개수
@@ -169,7 +169,7 @@ pos = 311
 #Negative 개수
 neg = 238
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/부산/롯데월드 부산그래프.png'
+image3 = 'img/수정/부산/롯데월드 부산그래프.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab2, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
@@ -183,19 +183,19 @@ intro = '''Haeundae Beach is the most famous beach in Busan. The white sand beac
 #추천 장소 4곳
 rec_place = ['Dongbaekseom Island', 'Dalmaji Road', 'Haeundae Blueline Park', 'Songjeong Beach']
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/수정/동백섬.jpeg',
-                 './img/수정/해운대달맞이길.png',
-                 './img/수정/블루라인파크.jpeg',
-                 './img/수정/송정해수욕장.jpeg']
+rec_place_img = ['img/수정/동백섬.jpeg',
+                 'img/수정/해운대달맞이길.png',
+                 'img/수정/블루라인파크.jpeg',
+                 'img/수정/송정해수욕장.jpeg']
 #추천 장소 설명 4개
 rec_caption = ["Dongbaekseom Island (Island of Camellias) is an island located off one end of Busan's famous Haeundae Beach. Dongbaekseom Island is easy to navigate thanks to the walking path that is built around it.",
                'Dalmaji Road refers to the pass that connects Haeundae Beach with Songjeong Beach over Wausan Mountain. It is an 8 km-long coastal road lined with cherry and pine trees, offering a beautiful coast view and a perfect place for seaside drives.',
                'Haeundae Blueline Park is an eco-friendly redevelopment of the former railroad facilities of the Donghae Nambu Line, a 4.8-kilometer-long stretch from Haeundae’s Mipo to Cheongsapo to Songjeong.',
                 'Songjeong Beach is ideal for families with young children because of its shallow waters. The beach is very popular as a photography venue for pre-wedding photoshoots.']
 # 관광지 Image
-image1 = './img/수정/해운대해수욕장.jpeg'
+image1 = 'img/수정/해운대해수욕장.jpeg'
 #Wordcloud
-image2 = './img/수정/부산/해운대해수욕장 워드클라우드.png'
+image2 = 'img/수정/부산/해운대해수욕장 워드클라우드.png'
 #파이차트 경로
 data = 'data/부산/해운대해수욕장.csv'
 #Positive 개수
@@ -203,7 +203,7 @@ pos = 167
 #Negative 개수
 neg = 60
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/부산/해운대해수욕장그래프.png'
+image3 = 'img/수정/부산/해운대해수욕장그래프.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab3, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
@@ -218,10 +218,10 @@ intro = '''Dadaepo Beach is made from sands deposited by the Nakdonggang River. 
 #추천 장소 4곳
 rec_place = ['Morundae', 'Amisan Observatory', 'Haeundae Beach', 'Gamcheon Culture Villiage']
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/수정/몰운대.jpeg',
-                 './img/수정/아미산전망대.bmp',
-                 './img/수정/해운대해수욕장.jpeg',
-                 './img/수정/감천문화마을.jpeg']
+rec_place_img = ['img/수정/몰운대.jpeg',
+                 'img/수정/아미산전망대.bmp',
+                 'img/수정/해운대해수욕장.jpeg',
+                 'img/수정/감천문화마을.jpeg']
 #추천 장소 설명 4개
 rec_caption = ['Morundae-gil Trail, starting from Noeuljeong Pavilion and covering the coast of Morundae Peninsula, is a perfect location to watch the sunset. Memorable attractions along the trail include the point where the Nakdonggang River flows into the southern sea, walking through a coastal pine forest.',
                'Amisan Observatory, where you can look down at the point where the Nakdonggang River and the sea become one,  is a place where visitors can enjoy the golden sunset and appreciate the pleasant scenery of the river and the sea while feeling the cool breeze.',
@@ -229,9 +229,9 @@ rec_caption = ['Morundae-gil Trail, starting from Noeuljeong Pavilion and coveri
                'Gamcheon Culture Villiage was formed by refugees of the Korean war who built their houses in staircase-fashion on the foothills of a coastal mountain. The many alleys in this community are vibrantly decorated with murals and sculptures created by the residents.']
 
 # 관광지 Image
-image1 = './img/수정/다대포해수욕장.jpeg'
+image1 = 'img/수정/다대포해수욕장.jpeg'
 #Wordcloud
-image2 = './img/수정/부산/다대포해수욕장 워드클라우드.png'
+image2 = 'img/수정/부산/다대포해수욕장 워드클라우드.png'
 #파이차트 경로
 data = 'data/부산/다대포해수욕장.csv'
 #Positive 개수
@@ -239,7 +239,7 @@ pos = 87
 #Negative 개수
 neg = 23
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/부산/다대포해수욕장그래프.png'
+image3 = 'img/수정/부산/다대포해수욕장그래프.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab4, name, googlelink, intro, image1, image2, data, pos, neg, image3)
 
@@ -254,19 +254,19 @@ intro = '''Bada Maeul Pojang Macha Chon, or Ocean City Street Food Alley, is loc
 #추천 장소 4곳
 rec_place = ['Haeundae Beach', 'Dalmaji Road', 'Seafood Pojang Macha Chon', 'Dongbaekseom Island']
 #추천 장소 이미지 경로 4개
-rec_place_img = ['./img/수정/해운대해수욕장.jpeg',
-                 './img/수정/해운대달맞이길.png',
-                 './img/수정/해물포장마차촌.jpeg',
-                 './img/수정/동백섬.jpeg']
+rec_place_img = ['img/수정/해운대해수욕장.jpeg',
+                 'img/수정/해운대달맞이길.png',
+                 'img/수정/해물포장마차촌.jpeg',
+                 'img/수정/동백섬.jpeg']
 #추천 장소 설명 4개
 rec_caption = ['Haeundae Beach is the most famous beach in Busan. The white sand beach creates a beautiful coastline before a shallow bay, making it perfect for swimming.',
                'Dalmaji Road refers to the pass that connects Haeundae Beach with Songjeong Beach over Wausan Mountain. It is an 8 km-long coastal road lined with cherry and pine trees, offering a beautiful coast view and a perfect place for seaside drives.',
                'Seafood Pojang Macha Chon is where you can taste a variety of seafood caught in the waters off Gijang.',
                "Dongbaekseom Island (Island of Camellias) is an island located off one end of Busan's famous Haeundae Beach. Dongbaekseom Island is easy to navigate thanks to the walking path that is built around it."]
 # 관광지 Image
-image1 = './img/수정/해운대포장마차촌.jpeg'
+image1 = 'img/수정/해운대포장마차촌.jpeg'
 #Wordcloud
-image2 = './img/수정/부산/해운대 포장마차촌 워드클라우드.png'
+image2 = 'img/수정/부산/해운대 포장마차촌 워드클라우드.png'
 #파이차트 경로
 data = 'data/부산/해운대포장마차촌.csv'
 #Positive 개수
@@ -274,6 +274,6 @@ pos = 62
 #Negative 개수
 neg = 50
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/부산/해운대포장마차촌그래프.png'
+image3 = 'img/수정/부산/해운대포장마차촌그래프.png'
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab5, name, googlelink, intro, image1, image2, data, pos, neg, image3)

@@ -138,7 +138,7 @@ rec_caption = [dict1['금강수목원'][2], dict1['베어트리파크'][2], dict
 # 관광지 Image
 image1 = dict1['국립세종수목원'][1]
 #Wordcloud
-image2 = './img/수정/세종/국립세종수목원 워드클라우드.png'
+image2 = 'img/수정/세종/국립세종수목원 워드클라우드.png'
 #파이차트 경로
 data = 'data/세종/국립세종수목원.csv'
 #Positive 개수
@@ -146,7 +146,7 @@ pos = 172
 #Negative 개수
 neg = 65
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/세종/국립세종수목원그래프.png'
+image3 = 'img/수정/세종/국립세종수목원그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab1, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -165,9 +165,9 @@ rec_place_img = [dict1['조치원테마거리'][1], dict1['금강수목원'][1],
 #추천 장소 설명 4개
 rec_caption = [dict1['조치원테마거리'][2], dict1['금강수목원'][2], dict1['조치원역광장'][2], dict1['국립세종수목원'][2]]
 # 관광지 Image 1
-image1 = './img/수정/도도리파크.jpeg'
+image1 = 'img/수정/도도리파크.jpeg'
 #Wordcloud Image 2
-image2 = './img/수정/세종/도도리파크 워드클라우드.png'
+image2 = 'img/수정/세종/도도리파크 워드클라우드.png'
 #파이차트 경로
 data = 'data/세종/도도리파크.csv'
 #Positive 개수
@@ -175,7 +175,7 @@ pos = 6
 #Negative 개수
 neg = 1
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/세종/도도리파크그래프.png'
+image3 = 'img/수정/세종/도도리파크그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab2, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -196,7 +196,7 @@ rec_caption = [dict1['고복자연공원'][2], dict1['금강수목원'][2], dict
 # 관광지 Image 1
 image1 = dict1['고복저수지'][1]
 #Wordcloud Image 2
-image2 = './img/수정/세종/고복저수지 워드클라우드.png'
+image2 = 'img/수정/세종/고복저수지 워드클라우드.png'
 #파이차트 경로
 data = 'data/세종/고복저수지.csv'
 #Positive 개수
@@ -204,7 +204,7 @@ pos = 16
 #Negative 개수
 neg = 2
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/세종/고복저수지그래프.png'
+image3 = 'img/수정/세종/고복저수지그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab3, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -225,7 +225,7 @@ rec_caption = [dict1['조치원역광장'][2], dict1['조천변벛꽃길'][2], d
 # 관광지 Image 1
 image1 = dict1['조치원테마거리'][1]
 #Wordcloud Image 2
-image2 = './img/수정/세종/조치원테마거리 워드클라우드.png'
+image2 = 'img/수정/세종/조치원테마거리 워드클라우드.png'
 #파이차트 경로
 data = 'data/세종/조치원테마거리.csv'
 #Positive 개수
@@ -233,7 +233,7 @@ pos = 1
 #Negative 개수
 neg = 1
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/세종/조치원테마거리그래프.png'
+image3 = 'img/수정/세종/조치원테마거리그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab4, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -252,9 +252,9 @@ rec_place_img = [dict1['세종미니멀주'][1], dict1['베어트리파크'][1],
 #추천 장소 설명 4개
 rec_caption = [dict1['세종미니멀주'][2], dict1['베어트리파크'][2], dict1['금강수목원'][2], dict1['세종공룡월드'][2]]
 # 관광지 Image 1
-image1 = './img/수정/아띠쥬.jpeg'
+image1 = 'img/수정/아띠쥬.jpeg'
 #Wordcloud Image 2
-image2 = './img/수정/세종/아띠쥬 워드클라우드.png'
+image2 = 'img/수정/세종/아띠쥬 워드클라우드.png'
 #파이차트 경로
 data = 'data/세종/아띠쥬.csv'
 #Positive 개수
@@ -262,7 +262,7 @@ pos = 10
 #Negative 개수
 neg = 3
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/세종/아띠쥬그래프.png'
+image3 = 'img/수정/세종/아띠쥬그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab5, name, googlelink, intro, image1, image2, data, pos, neg, image3)

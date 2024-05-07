@@ -10,7 +10,7 @@ import streamlit.components.v1 as components
 df = pd.read_csv('data/관광지_위경도(최종3).csv')
 
 st.set_page_config(
-    page_title='Korea Travel Guide 🌎',
+    page_title='Korea on Map 🌎',
     page_icon='🗺️',
     layout='wide',
     initial_sidebar_state='auto')
@@ -64,10 +64,7 @@ dests = {
          'Jeju' : ['Snoopy Garden', 'Hamdeok Beach', 'Camellia Hill', 'Seongsan Sunrise Peak', 'Camellia Forest']
 }
 
-st.title('Korea Travel Guide 🌎')
-# st.header('Korea Map 🗺️')
-
-# st.text('사이트 소개 글 넣기')
+st.title('Korea on Map 🌎')
 
 col1, col2= st.columns(2)
 
