@@ -101,7 +101,6 @@ if selected_city:
                             )
         marker_cluster = MarkerCluster().add_to(my_map)
         for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            # folium.TileLayer('Stamen Terrain').add_to(marker_cluster)
             folium.Marker([lat2, lon2],
                           popup=name,
                           tooltip=name,
@@ -116,7 +115,6 @@ if selected_city:
                             attr='Stadia Maps'
                             )
         for name, lat2, lon2 in zip(df['관광지'], df['위도'], df['경도']):
-            # folium.TileLayer('Stamen Terrain').add_to(marker_cluster)
             folium.Marker([lat2, lon2],
                           popup=name,
                           tooltip=name,
@@ -127,4 +125,3 @@ if selected_city:
     minimap.add_to(my_map)
 
     folium_static(my_map, width=1000, height=800)
-    # streamlit_folium.st_folium(my_map, width=1000, height=800)
