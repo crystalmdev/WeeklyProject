@@ -18,6 +18,7 @@ millify
 pingouin
 jupyterlab
 streamlit_folium
+Pillow
 PIL
 matplotlib.pyplot
 plotly.express
