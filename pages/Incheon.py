@@ -100,6 +100,7 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
         negative_display = f'{negative_icon} {negative_ratio:.0f}%'
 
         st.subheader(f'**:green[{positive_display}]** **:red[{negative_display}]**')
+        image3
 
         with st.expander('Review text positive/negative word distribution (Bigram NetworkX Graph)'):
             st.image(image3, use_column_width=True)
