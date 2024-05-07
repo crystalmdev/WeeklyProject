@@ -52,54 +52,58 @@ def tabs(tabnum, name, googlelink, intro, image1, image2, data, pos, neg, image3
         col1, col2 = st.columns([1,1])
 
         with col1:
-            st.markdown('**Top Keywords about the Destination**')
-            st.text('(based on Korean blog reviews)')
+            st.markdown('💡**Highlights of the Destination**')
+            st.text('(Top Keywords based on Korean blog)')
             st.image(Image.open(image2),
                      use_column_width=True)
         with col2:
-            st.markdown('**Most Visited Month**')
-            st.text('(based on Korean reviews)')
             data1 = pd.read_csv(data)
             data1[['Year', 'Month', 'Day']] = data1['날짜'].str.rstrip('.').str.split('.', expand=True)
+            # 전체 데이터에서 모든 월을 추출
             all_months = data1['Month'].unique()
-            month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+            # 'month' 리스트 생성
+            month_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                          'October', 'November', 'December']
+
+            # 월 이름 리스트를 전체 월 중 있는 월만 남기도록 필터링
             filtered_month_list = [month_list[int(month) - 1] for month in all_months]
+            # popular_month 만들기
             popular_month = pd.DataFrame(data1['Month'].value_counts().sort_index())
             popular_month['month'] = filtered_month_list
+
+            # 후기수 가장 많은 달 1위 뽑기
+            mon = popular_month.sort_values(by='count', ascending=False)['month'][0]
+            st.markdown(f'**🗓️ Most Visited Month: :red[{mon}]**')
+
+            st.text('(based on Korean reviews)')
             fig = px.pie(popular_month, values='count',
                          names='month', hover_data=['count'],
                          labels={'count': 'Count'},
                          width=400, height=400, hole=0.3)
+
             fig.update_traces(textinfo='percent+label', textfont_size=14, textposition='inside')
             fig.update_layout(showlegend=False)
             st.plotly_chart(fig)
 
         st.divider()
 
-        st.markdown('**Positive/Negative Ratio**')
-        st.text('(based on Korean reviews)')
-        data = {'Category': ['Total'],
-                'Positive': [pos],
-                'Negative': [neg]}
-        df = pd.DataFrame(data)
+        total_count = pos + neg
+        st.markdown(f'🔍The reviews from korean visitors are generally like this (**{total_count} reviews**)')
+        positive_ratio = (pos / total_count) * 100
+        negative_ratio = (neg / total_count) * 100
 
-        fig = go.Figure()
-        fig.add_trace(go.Bar(
-            y=df['Category'], x=df['Positive'],
-            name='Positive', orientation='h',
-            marker=dict(color='green')
-        ))
-        fig.add_trace(go.Bar(
-            y=df['Category'], x=df['Negative'],
-            name='Negative', orientation='h',
-            marker=dict(color='red')
-        ))
+        positive_icon = '😊'  # 긍정을 나타내는 이모티콘
+        negative_icon = '😞'  # 부정을 나타내는 이모티콘
 
-        fig.update_layout(xaxis_title='Category', yaxis_title='Value')
-        st.plotly_chart(fig)
+        positive_display = f'{positive_icon} {positive_ratio:.0f}%'
+        negative_display = f'{negative_icon} {negative_ratio:.0f}%'
 
-        with st.expander('Bigram NetworkX Graph'):
+        st.subheader(f'**:green[{positive_display}]** **:red[{negative_display}]**')
+
+        with st.expander('Review text positive/negative word distribution (Bigram NetworkX Graph)'):
             st.image(Image.open(image3), use_column_width=True)
+
 
 # -------------------------(dict)-----------------------------
 dict1 = {
@@ -136,11 +140,11 @@ image2 = './img/수정/인천/월미도 워드클라우드.png'
 #파이차트 경로
 data = 'data/인천/월미도.csv'
 #Positive 개수
-pos = 200
+pos = 59
 #Negative 개수
-neg = 100
+neg = 37
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/노드.png'
+image3 = './img/수정/인천/월미도그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab1, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -165,11 +169,11 @@ image2 = './img/수정/인천/인천차이나타운 워드클라우드.png'
 #파이차트 경로
 data = 'data/인천/인천차이나타운.csv'
 #Positive 개수
-pos = 200
+pos = 104
 #Negative 개수
-neg = 100
+neg = 60
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/노드.png'
+image3 = './img/수정/인천/인천차이나타운그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab2, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -194,11 +198,11 @@ image2 = './img/수정/인천/인천대공원 워드클라우드.png'
 #파이차트 경로
 data = 'data/인천/인천대공원.csv'
 #Positive 개수
-pos = 200
+pos = 81
 #Negative 개수
-neg = 100
+neg = 32
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/노드.png'
+image3 = './img/수정/인천/인천대공원그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab3, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -223,11 +227,11 @@ image2 = './img/수정/인천/월미테마파크 워드클라우드.png'
 #파이차트 경로
 data = 'data/인천/월미테마파크.csv'
 #Positive 개수
-pos = 200
+pos = 17
 #Negative 개수
-neg = 100
+neg = 11
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/노드.png'
+image3 = './img/수정/인천/월미테마파크그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab4, name, googlelink, intro, image1, image2, data, pos, neg, image3)
@@ -252,11 +256,11 @@ image2 = './img/수정/인천/송월동동화마을 워드클라우드.png'
 #파이차트 경로
 data = 'data/인천/송월동동화마을.csv'
 #Positive 개수
-pos = 200
+pos = 17
 #Negative 개수
-neg = 100
+neg = 8
 #Bigram NetworkX Graph 이미지 첨부
-image3 = './img/수정/노드.png'
+image3 = './img/수정/인천/송월동동화마을그래프.png'
 
 #tabnum만 바꿔주기 (tab1, tab2, tab3, tab4, tab5)
 tabs(tab5, name, googlelink, intro, image1, image2, data, pos, neg, image3)

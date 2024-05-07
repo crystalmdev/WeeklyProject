@@ -54,7 +54,7 @@ dests = {
 st.title('Korea Travel Guide 🌎')
 # st.header('Korea Map 🗺️')
 
-st.text('사이트 소개글 넣기')
+# st.text('사이트 소개 글 넣기')
 
 col1, col2= st.columns(2)
 
