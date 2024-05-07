@@ -18,3 +18,9 @@ millify
 pingouin
 jupyterlab
 streamlit_folium
+PIL
+matplotlib.pyplot
+plotly.express
+plotly.graph_objects
+streamlit.components.v1
+folium.plugins
