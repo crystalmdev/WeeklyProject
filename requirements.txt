@@ -17,3 +17,4 @@ streamlit-option-menu
 millify
 pingouin
 jupyterlab
+streamlit_folium
