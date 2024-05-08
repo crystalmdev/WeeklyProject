@@ -123,5 +123,4 @@ if selected_city:
 
     minimap = MiniMap(width=100, height=100)
     minimap.add_to(my_map)
-
     folium_static(my_map, width=1000, height=800)
