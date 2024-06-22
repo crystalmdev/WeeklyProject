@@ -6,8 +6,8 @@
 #### - Main service
 - Interactive Map of Korea(folium)
 - Introduction of each tourist attractions
-- Wordcloud for each tourist attractions
-- Similar travel destination recommendations
+- Wordcloud for each tourist attractions based on blog reviews
+- Similar travel destination recommendations based on blog reviews
 - Most visited month based on KakaoMap reviews
 - Sentiment Analysis based on KakaoMap reviews
 #### - Data Source : 
