@@ -1,4 +1,4 @@
-# KoreaOnMap (Streamlit Project of Group Y)
+# KoreaOnMap
 ### Topic : Korea Travel Guide for foreigners
 #### - Programming Language : Python
 #### - Web Page : Streamlit
